@@ -1,0 +1,22 @@
+@page "/"
+@using Microsoft.Fast.Components.FluentUI
+
+<MudContainer MaxWidth="MaxWidth.Medium">
+</MudContainer>
+
+@if (_showStatusMessage)
+{
+    <div style="background-color: @BadgeColor" class="badge">
+        <p class="badge-font">
+            @StatusMessage
+        </p>
+    </div>
+}
+else
+{
+    <div style="background-color: transparent" class="badge"></div>
+}
+
+<div class="center" style="margin-top: 20px">
+    <FluentDataGrid RowsData="_currentResponseModel.ServiceUsers" ColumnDefinitions="_columnsGrid" GridTemplateColumns="1fr 1fr 1fr 1fr"/>
+</div>

@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+@using MinimalFrontend.Components
+@using MinimalFrontend.Models
+
+<PageTitle>MinimalFrontend</PageTitle>
+<MudThemeProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudText Typo="Typo.h5" Class="ml-3">Logo</MudText>
+        <!--<MudSpacer />-->
+        <div class="d-flex justify-center flex-grow-1 gap-4">
+            <DropDownMenu Label="Files" MenuItems="@_dropDownMenuItems"></DropDownMenu>
+        </div>
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+    </MudAppBar>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code
+{
+    
+}

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="1.5.3" />
+      <PackageReference Include="MudBlazor" Version="6.1.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Localization.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Localization.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Localization.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Localization.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Localization.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Localization.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Localization.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Localization.de.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>
