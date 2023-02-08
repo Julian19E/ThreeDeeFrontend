@@ -5,44 +5,101 @@
     <projectFile profileName="MinimalFrontend">MinimalFrontend/MinimalFrontend.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2179295a-6bbb-4570-b515-1ae44a39f47d" name="Changes" comment="" />
+    <list default="true" id="2179295a-6bbb-4570-b515-1ae44a39f47d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Components/FileCard.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Components/FileCard.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Components/FileHistoryTimeline.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Components/ThreeDModelRenderer.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Components/TimeLineItem.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Components/TimeLineItem.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Controller/IFileRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Enums/FileIncident.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Models/FileHistoryModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Models/FileModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Services/IJsInteropService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Services/IThemeProviderService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Services/JsInteropService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/Services/ThemeProviderService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/assets/Benchy.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/assets/Bolt.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/assets/Falcon.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/assets/GiftBoxInner.STL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/assets/GiftBoxOuter.STL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/assets/Lamp.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/assets/Nut.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/assets/PrinterTest.STL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/assets/crown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinimalFrontend/wwwroot/js/renderController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MinimalFrontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinimalFrontend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Components/DropDownMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Components/DropDownMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Controller/IUserRepositoryController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Controller/UserRepositoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Controller/FileRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Enums/ResponseStatus.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Enums/UserRepositoryActions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Localization.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Localization.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Localization.de.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Localization.de.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Localization.de.resx" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Localization.de.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Localization.resx" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Localization.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/MinimalFrontend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/MinimalFrontend.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Models/UserModel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Models/UserRequestResponseModel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Pages/Error.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Pages/Error.cshtml.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Pages/FilesOverview.razor" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Pages/FilesOverview.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Pages/Index.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Pages/Index.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/Shared/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinimalFrontend/ViewModels/TopMenuViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinimalFrontend/ViewModels/TopMenuViewModel.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8589b0d0d62f40999d8a332f65d16b15da00/40/0ff192f3/Viewer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9436948e79b146958c0dacbf5db5bd2787ca00/74/a991531d/MudCardMedia.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9436948e79b146958c0dacbf5db5bd2787ca00/a1/5e2d6470/IJsApiService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9436948e79b146958c0dacbf5db5bd2787ca00/f8/e2c6439e/MudMenuItem.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectId" id="2LQTYAsdPvo8M8rxB1zndYOPg6J" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Hannes\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Hannes\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Hannes\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Hannes\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Hannes\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Hannes\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.MinimalFrontend">
     <configuration name="MinimalFrontend" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/MinimalFrontend/MinimalFrontend.csproj" />
@@ -83,15 +140,27 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1675802351950</updated>
-      <workItem from="1675802353012" duration="3490000" />
+      <workItem from="1675802353012" duration="11916000" />
+      <workItem from="1675839999971" duration="20561000" />
     </task>
+    <task id="LOCAL-00001" summary="- init">
+      <created>1675805940330</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675805940330</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="- init" />
+    <option name="LAST_COMMIT_MESSAGE" value="- init" />
   </component>
 </project>

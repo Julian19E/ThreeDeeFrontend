@@ -60,7 +60,7 @@ namespace MinimalFrontend {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neue Datei hinzufügen.
+        ///   Looks up a localized string similar to Datei hinzufügen.
         /// </summary>
         internal static string DropDownAddFile {
             get {
@@ -69,7 +69,7 @@ namespace MinimalFrontend {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Private Dateien.
+        ///   Looks up a localized string similar to private Dateien.
         /// </summary>
         internal static string DropDownPrivateFiles {
             get {
@@ -78,7 +78,7 @@ namespace MinimalFrontend {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alle Dateien.
+        ///   Looks up a localized string similar to alle Dateien.
         /// </summary>
         internal static string DropDownPublicFiles {
             get {
@@ -87,7 +87,7 @@ namespace MinimalFrontend {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neue Datei anfordern.
+        ///   Looks up a localized string similar to neues Modell anfordern.
         /// </summary>
         internal static string DropDownRequestFile {
             get {
@@ -96,7 +96,7 @@ namespace MinimalFrontend {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geteilte Dateien.
+        ///   Looks up a localized string similar to geteilte Dateien.
         /// </summary>
         internal static string DropDownSharedFiles {
             get {

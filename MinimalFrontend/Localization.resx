@@ -19,18 +19,18 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="DropDownPublicFiles" xml:space="preserve">
-        <value>All files</value>
+        <value>all files</value>
     </data>
     <data name="DropDownPrivateFiles" xml:space="preserve">
-        <value>Privat files</value>
+        <value>private files</value>
     </data>
     <data name="DropDownSharedFiles" xml:space="preserve">
-        <value>Shared files</value>
+        <value>shared files</value>
     </data>
     <data name="DropDownAddFile" xml:space="preserve">
-        <value>Add new file</value>
+        <value>add new file</value>
     </data>
     <data name="DropDownRequestFile" xml:space="preserve">
-        <value>Request new file model</value>
+        <value>request new model</value>
     </data>
 </root>

@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Blazor3D" Version="0.1.24" />
       <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="1.5.3" />
       <PackageReference Include="MudBlazor" Version="6.1.8" />
     </ItemGroup>
@@ -33,6 +34,10 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Localization.de.resx</DependentUpon>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\assets" />
     </ItemGroup>
 
 </Project>
