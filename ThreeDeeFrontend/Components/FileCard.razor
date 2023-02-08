@@ -1,0 +1,37 @@
+<MudCard>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Filename</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudIconButton 
+                Icon="@Icons.Material.Filled.Share" 
+                Color="Color.Default" />
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardMedia Image="/assets/crown.png"/>
+    <MudCardContent>
+        <ThreeDModelRenderer 
+            @ref="_threeDModelRendererRef"/>
+        <MudText>File author</MudText>
+        <MudText
+            Typo="Typo.body2">
+            File description
+        </MudText>
+        <FileHistoryTimeline/>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton
+            OnClick="async () => await _threeDModelRendererRef.InitModel()"
+            Variant="Variant.Text"
+            Color="Color.Primary">
+            Render
+        </MudButton>
+        <MudButton
+            OnClick="_threeDModelRendererRef.ShowInfo"
+            Variant="Variant.Text"
+            Color="Color.Primary">
+            Info
+        </MudButton>
+    </MudCardActions>
+</MudCard>

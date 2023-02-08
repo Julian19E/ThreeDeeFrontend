@@ -1,0 +1,50 @@
+﻿@inherits LayoutComponentBase
+@using Color = MudBlazor.Color
+@using ThreeDeeFrontend.ViewModels
+@using ThreeDeeFrontend.Services
+@inject TopMenuViewModel TopMenuViewModel
+
+<PageTitle>3D File Management System</PageTitle>
+<MudThemeProvider @bind-IsDarkMode="@ThemeProviderService.IsDarkMode" Theme="_theme"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudText
+            Typo="Typo.h5"
+            Class="ml-3">
+            Logo
+        </MudText>
+        <!--<MudSpacer />-->
+        <div class="d-flex justify-center flex-grow-1 gap-4">
+            <DropDownMenu 
+                Label="Library" 
+                MenuItems="@TopMenuViewModel.LibraryItems"/>
+            <DropDownMenu 
+                Label="Files" 
+                MenuItems="@TopMenuViewModel.FilesItems"/>
+        </div>
+        <MudSwitch 
+            @bind-Checked="@ThemeProviderService.IsDarkMode"
+            Color="Color.Primary" T="bool" 
+            Label="@(ThemeProviderService.IsDarkMode ? "DARK" : "LIGHT")"/>
+        <MudIconButton 
+            Icon="@Icons.Material.Filled.ManageAccounts" 
+            Color="Color.Inherit" 
+            Edge="Edge.End" />
+    </MudAppBar>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code{
+    [Inject]
+    IThemeProviderService ThemeProviderService { get; set; }
+    
+    private readonly MudTheme _theme = new();
+    //private bool _isDarkMode;
+}
+
+
