@@ -47,7 +47,17 @@
                     @ref="_modelRendererRef"
                     Name="@_file.Name"
                     Id="@_file.Id"
+                    ProgressHasChanged="ProgressHasChangedCallback"
                     ColorValue="@_color.Value[..7]"/>
+                if (_progress < 100)
+                {
+                    <MudProgressLinear 
+                        Min="0" 
+                        Max="100" 
+                        Color="Color.Primary" 
+                        Value="@_progress" 
+                        Class="my-7" />
+                }
             }
             <MudGrid>
                 <MudItem xs="12" sm="6">
@@ -71,6 +81,7 @@
                 </MudExpansionPanel>
                 <MudExpansionPanel
                     Text="GCode">
+                    <GCodeTable/>
                 </MudExpansionPanel>
                 <MudExpansionPanel
                     Text="Kommentare">

@@ -1,0 +1,21 @@
+﻿@using ThreeDeeFrontend.Models
+@using ThreeDeeFrontend.Repositories
+<MudDataGrid T="GCodeSettingsModel"  Items="@GCodeSettingsRepository.MockData" SortMode="@SortMode.Multiple">
+    <Columns>
+        <Column T="GCodeSettingsModel" Field="Downloads" />
+        <Column T="GCodeSettingsModel" Field="SuccessPercentage" />
+        <Column T="GCodeSettingsModel" Field="PrinterBrand" />
+        <Column T="GCodeSettingsModel" Field="PrinterModel" />
+        <Column T="GCodeSettingsModel" Field="XyzDimensions" Sortable="false" />
+        <Column T="GCodeSettingsModel" Field="Material"/>
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="GCodeSettingsModel" />
+    </PagerContent>
+</MudDataGrid>
+
+@code
+{
+    [Inject]
+    private IGCodeSettingsRepository GCodeSettingsRepository { get; set; }
+}

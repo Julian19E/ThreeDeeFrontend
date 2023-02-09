@@ -17,13 +17,21 @@ public partial class FileCard
     private FileModel _file;
     private bool _avoidRendering;
     private bool _isColorPickerOpen;
+    private bool _isInitDone;
     private MudColor _color = new("#03A9F4");
     private ModelRenderer _modelRendererRef;
-    private Random _random = new();
+    private readonly Random _random = new();
+    private double _progress;
 
     protected override void OnParametersSet()
     {
         _file = FileRepository.Files[Id];
+    }
+
+    private async Task ProgressHasChangedCallback(double progress)
+    {
+        _progress = progress;
+        await InvokeAsync(StateHasChanged);
     }
 
     private async Task UpdateColor(MudColor color)

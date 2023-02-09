@@ -2,7 +2,7 @@ using Microsoft.JSInterop;
 
 namespace ThreeDeeFrontend.Services;
 
-public class JsInteropService : IJsInteropService
+public class JsInteropService<T> : IJsInteropService<T> where T : class
 {
     private readonly Lazy<Task<IJSObjectReference>> _jsApiModule;
     
@@ -12,10 +12,10 @@ public class JsInteropService : IJsInteropService
             .InvokeAsync<IJSObjectReference>("import", "./js/renderController.js").AsTask());
     }
 
-    public async Task AddFile(string path, string color, int id)
+    public async Task AddFile(string path, string color, int id, DotNetObjectReference<T> dotnetObjRef)
     {
         IJSObjectReference module = await _jsApiModule.Value;
-        await module.InvokeVoidAsync("addModel", path, color, id);
+        await module.InvokeVoidAsync("addModel", path, color, id, dotnetObjRef);
     }
 
     public async Task ChangeColor(string newColor, int id)

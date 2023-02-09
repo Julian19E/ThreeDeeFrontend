@@ -1,0 +1,43 @@
+﻿@using ThreeDeeFrontend.Controller
+@using ThreeDeeFrontend.Models
+<MudAutocomplete
+    T="string" 
+    Immediate="true"
+    Label="Suche in verfügbaren Modellen"
+    @bind-Value="_selectedValue" 
+    AdornmentIcon="@Icons.Material.Filled.Search" 
+    AdornmentColor="Color.Primary"
+    SearchFunc="@Search"/>
+
+@code{
+
+    [Parameter]
+    public EventCallback<List<FileModel>> FilteredFilesHaveChanged { get; set; }
+
+    [Inject]
+    private IFileRepository FileRepository { get; set; }
+    private List<FileModel> _showFiltered = new();
+    private string _selectedValue;
+
+    protected override void OnParametersSet()
+    {
+        _showFiltered = FileRepository.Files;
+    }
+
+    private async Task<IEnumerable<string>> Search(string searchValue)
+    {
+        IEnumerable<string> filtered;
+        if (string.IsNullOrEmpty(searchValue))
+        {
+            _showFiltered = FileRepository.Files;
+            filtered = new List<string>();
+        }
+        else
+        {
+            _showFiltered = FileRepository.Files.Where(x => x.Name.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            filtered = _showFiltered.Select(x => x.Name);
+        }
+        await FilteredFilesHaveChanged.InvokeAsync(_showFiltered);
+        return filtered;
+    }
+}

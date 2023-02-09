@@ -1,4 +1,5 @@
 using MudBlazor.Services;
+using ThreeDeeFrontend.Components;
 using ThreeDeeFrontend.Controller;
 using ThreeDeeFrontend.Repositories;
 using ThreeDeeFrontend.Services;
@@ -10,8 +11,9 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 builder.Services.AddMudServices();
 builder.Services.AddScoped<TopMenuViewModel>();
-builder.Services.AddScoped<IJsInteropService, JsInteropService>();
+builder.Services.AddScoped<IJsInteropService<ModelRenderer>, JsInteropService<ModelRenderer>>();
 builder.Services.AddScoped<IThemeProviderService, ThemeProviderService>();
+builder.Services.AddScoped<IGCodeSettingsRepository, GCodeSettingsRepository>();
 builder.Services.AddScoped<IFileRepository>(sp => new FileRepository(sp.GetService<HttpClient>()!, sp.GetService<IConfiguration>()!["UsersEndpoint"]));
 
 var app = builder.Build();
