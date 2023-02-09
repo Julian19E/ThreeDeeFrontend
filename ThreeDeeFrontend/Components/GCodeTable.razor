@@ -1,5 +1,4 @@
-﻿@using ThreeDeeFrontend.Models
-@using ThreeDeeFrontend.Repositories
+﻿@using ThreeDeeApplication.Models
 <MudDataGrid T="GCodeSettingsModel"  Items="@GCodeSettingsRepository.MockData" SortMode="@SortMode.Multiple">
     <Columns>
         <Column T="GCodeSettingsModel" Field="Downloads" />
@@ -13,9 +12,3 @@
         <MudDataGridPager T="GCodeSettingsModel" />
     </PagerContent>
 </MudDataGrid>
-
-@code
-{
-    [Inject]
-    private IGCodeSettingsRepository GCodeSettingsRepository { get; set; }
-}

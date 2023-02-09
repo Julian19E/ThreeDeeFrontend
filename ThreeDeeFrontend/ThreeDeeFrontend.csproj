@@ -40,4 +40,9 @@
       <Folder Include="wwwroot\assets" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ThreeDeeApplication\ThreeDeeApplication.csproj" />
+      <ProjectReference Include="..\ThreeDeeInfrastructure\ThreeDeeInfrastructure.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1,16 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
-using ThreeDeeFrontend.Controller;
-using ThreeDeeFrontend.Models;
-using ThreeDeeFrontend.Repositories;
-using ThreeDeeFrontend.Services;
+using ThreeDeeApplication.Models;
+using ThreeDeeInfrastructure.Repositories;
 
 namespace ThreeDeeFrontend.Pages;
 
 public partial class Index
 {
-    [Inject]
-    private IThemeProviderService ThemeProviderService { get; set; }
-    
     [Inject]
     private IFileRepository FileRepository { get; set; }
     
@@ -21,12 +16,11 @@ public partial class Index
 
     protected override void OnParametersSet()
     {
-        _filteredFiles = FileRepository.Files;
+        _filteredFiles = FileRepository.MockData;
     }
 
     private void OnButtonClicked(int fileId)
     {
-        Console.Write(fileId);
         NavigationManager.NavigateTo($"/model/{fileId}");
     }
 

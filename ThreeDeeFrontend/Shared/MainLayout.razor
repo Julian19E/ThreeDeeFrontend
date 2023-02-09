@@ -1,9 +1,10 @@
 ﻿@inherits LayoutComponentBase
 @using Color = MudBlazor.Color
 @using ThreeDeeFrontend.ViewModels
-@using ThreeDeeFrontend.Services
 @using ThreeDeeFrontend.Components
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components
+@using ThreeDeeInfrastructure.Services
 @inject TopMenuViewModel TopMenuViewModel
 
 <PageTitle>3D File Management System</PageTitle>
@@ -20,7 +21,6 @@
             Class="ml-3">
             Logo
         </MudText>
-        <!--<MudSpacer />-->
         <div class="d-flex justify-center flex-grow-1 gap-4">
             <DropDownMenu 
                 Label="Library" 

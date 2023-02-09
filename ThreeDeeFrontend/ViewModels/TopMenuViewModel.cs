@@ -1,4 +1,4 @@
-﻿using ThreeDeeFrontend.Models;
+﻿using ThreeDeeApplication.Models;
 
 namespace ThreeDeeFrontend.ViewModels;
 

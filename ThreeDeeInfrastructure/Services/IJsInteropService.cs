@@ -1,6 +1,6 @@
 using Microsoft.JSInterop;
 
-namespace ThreeDeeFrontend.Services;
+namespace ThreeDeeInfrastructure.Services;
 
 public interface IJsInteropService<T> where T : class
 {

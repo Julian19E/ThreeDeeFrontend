@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace ThreeDeeFrontend.Services;
+namespace ThreeDeeInfrastructure.Services;
 
 public interface IThemeProviderService
 {

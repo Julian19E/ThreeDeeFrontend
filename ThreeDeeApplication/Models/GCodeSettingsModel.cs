@@ -1,6 +1,6 @@
-﻿using ThreeDeeFrontend.Enums;
+﻿using ThreeDeeApplication.Enums;
 
-namespace ThreeDeeFrontend.Models;
+namespace ThreeDeeApplication.Models;
 
 public class GCodeSettingsModel
 {

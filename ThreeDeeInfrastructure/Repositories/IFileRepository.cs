@@ -1,6 +1,6 @@
-using ThreeDeeFrontend.Models;
+using ThreeDeeApplication.Models;
 
-namespace ThreeDeeFrontend.Controller;
+namespace ThreeDeeInfrastructure.Repositories;
 
 public interface IFileRepository
 {
@@ -9,6 +9,6 @@ public interface IFileRepository
     Task<bool> Create(FileModel file);
     Task<bool> Update(FileModel file);
     Task<bool> Delete(int id);
-    List<FileModel> Files { get; }
+    List<FileModel> MockData { get; }
 
 }

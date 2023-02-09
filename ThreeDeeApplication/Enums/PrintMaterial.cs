@@ -1,4 +1,4 @@
-﻿namespace ThreeDeeFrontend.Enums;
+﻿namespace ThreeDeeApplication.Enums;
 
 public enum PrintMaterial
 {

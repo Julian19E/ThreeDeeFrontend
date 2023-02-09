@@ -1,31 +1,31 @@
 using Microsoft.AspNetCore.Components;
 using MudBlazor.Utilities;
+using ThreeDeeApplication.Models;
 using ThreeDeeFrontend.Components;
-using ThreeDeeFrontend.Controller;
-using ThreeDeeFrontend.Models;
+using ThreeDeeInfrastructure.Repositories;
 
 namespace ThreeDeeFrontend.Pages;
 
 public partial class FileCard
 {
-    [Inject] 
-    public IFileRepository FileRepository { get; set; }
-
     [Parameter]
     public int Id { get; set; }
+    
+    [Inject] 
+    public IFileRepository FileRepository { get; set; }
 
     private FileModel _file;
     private bool _avoidRendering;
     private bool _isColorPickerOpen;
     private bool _isInitDone;
     private MudColor _color = new("#03A9F4");
-    private ModelRenderer _modelRendererRef;
     private readonly Random _random = new();
     private double _progress;
+    private ModelRenderer _modelRendererRef;
 
     protected override void OnParametersSet()
     {
-        _file = FileRepository.Files[Id];
+        _file = FileRepository.MockData[Id];
     }
 
     private async Task ProgressHasChangedCallback(double progress)

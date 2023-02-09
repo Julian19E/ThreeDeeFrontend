@@ -1,6 +1,6 @@
-﻿using ThreeDeeFrontend.Models;
+﻿using ThreeDeeApplication.Models;
 
-namespace ThreeDeeFrontend.Repositories;
+namespace ThreeDeeInfrastructure.Repositories;
 
 public interface IGCodeSettingsRepository
 {

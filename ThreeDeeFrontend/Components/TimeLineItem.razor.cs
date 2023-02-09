@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using ThreeDeeFrontend.Enums;
+using ThreeDeeApplication.Enums;
 
 namespace ThreeDeeFrontend.Components;
 

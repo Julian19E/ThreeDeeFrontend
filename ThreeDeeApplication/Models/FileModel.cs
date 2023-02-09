@@ -1,4 +1,4 @@
-namespace ThreeDeeFrontend.Models;
+namespace ThreeDeeApplication.Models;
 
 public class FileModel
 {

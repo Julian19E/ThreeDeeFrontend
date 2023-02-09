@@ -1,7 +1,7 @@
-﻿using ThreeDeeFrontend.Enums;
-using ThreeDeeFrontend.Models;
+﻿using ThreeDeeApplication.Enums;
+using ThreeDeeApplication.Models;
 
-namespace ThreeDeeFrontend.Repositories;
+namespace ThreeDeeInfrastructure.Repositories;
 
 public class GCodeSettingsRepository : IGCodeSettingsRepository
 {

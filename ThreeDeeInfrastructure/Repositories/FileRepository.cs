@@ -1,14 +1,14 @@
-﻿using System.Text.Json;
-using ThreeDeeFrontend.Controller;
-using ThreeDeeFrontend.Models;
+﻿using System.Net.Http.Json;
+using System.Text.Json;
+using ThreeDeeApplication.Models;
 
-namespace ThreeDeeFrontend.Repositories;
+namespace ThreeDeeInfrastructure.Repositories;
 
 public class FileRepository : IFileRepository
 {
     private readonly HttpClient _httpClient;
     private readonly string _serviceUrl;
-    public List<FileModel> Files { get; } = new()
+    public List<FileModel> MockData { get; } = new()
     {
         new FileModel{Id = 0, Name = "Banshee", Author = "Nico"},
         new FileModel{Id = 1, Name = "PrinterTest", Author = "Nico"},

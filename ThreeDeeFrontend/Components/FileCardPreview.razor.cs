@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using MudBlazor.Utilities;
-using ThreeDeeFrontend.Models;
+using ThreeDeeApplication.Models;
 
 namespace ThreeDeeFrontend.Components;
 

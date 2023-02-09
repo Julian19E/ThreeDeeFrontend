@@ -1,9 +1,8 @@
 using MudBlazor.Services;
 using ThreeDeeFrontend.Components;
-using ThreeDeeFrontend.Controller;
-using ThreeDeeFrontend.Repositories;
-using ThreeDeeFrontend.Services;
 using ThreeDeeFrontend.ViewModels;
+using ThreeDeeInfrastructure.Repositories;
+using ThreeDeeInfrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using ThreeDeeFrontend.Models;
+using ThreeDeeApplication.Models;
 
 namespace ThreeDeeFrontend.Components;
 

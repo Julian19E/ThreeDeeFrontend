@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
-namespace ThreeDeeFrontend.Services;
+namespace ThreeDeeInfrastructure.Services;
 
 public class ThemeProviderService : IThemeProviderService
 {
