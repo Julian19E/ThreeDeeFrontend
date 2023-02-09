@@ -1,5 +1,27 @@
 @page "/"
+@using ThreeDeeFrontend.Components
 
 <MudContainer MaxWidth="MaxWidth.Medium">
-    
+    <FileCard File="@_files[value]"/>
 </MudContainer>
+
+<MudSelect T="int" ValueChanged="Changed" Value="@value" Label="Select fast-food" Placeholder="Please Select" AdornmentIcon="@Icons.Material.Filled.Fastfood" AdornmentColor="Color.Primary">
+    <MudSelectItem Value="0">@_files[0].Name</MudSelectItem>
+    <MudSelectItem Value="1">@_files[1].Name</MudSelectItem>
+    <MudSelectItem Value="2">@_files[2].Name</MudSelectItem>
+    <MudSelectItem Value="3">@_files[3].Name</MudSelectItem>
+    <MudSelectItem Value="4">@_files[4].Name</MudSelectItem>
+</MudSelect>
+
+
+@code
+{
+    int value;
+    int value2;
+
+    private void Changed(int tts)
+    {
+        value = tts;
+        StateHasChanged();
+    }
+}

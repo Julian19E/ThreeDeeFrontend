@@ -2,13 +2,17 @@
 @using Color = MudBlazor.Color
 @using ThreeDeeFrontend.ViewModels
 @using ThreeDeeFrontend.Services
+@using ThreeDeeFrontend.Components
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 @inject TopMenuViewModel TopMenuViewModel
 
 <PageTitle>3D File Management System</PageTitle>
-<MudThemeProvider @bind-IsDarkMode="@ThemeProviderService.IsDarkMode" Theme="_theme"/>
+<MudThemeProvider 
+    IsDarkMode="@ThemeProviderService.IsDarkMode"
+    IsDarkModeChanged="async x => await SwitchTheme(x)" 
+    Theme="_theme"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
-
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudText
@@ -40,11 +44,34 @@
 </MudLayout>
 
 @code{
+    
     [Inject]
-    IThemeProviderService ThemeProviderService { get; set; }
+    private IThemeProviderService ThemeProviderService { get; set; }
+    
+    [Inject] 
+    private ProtectedLocalStorage BrowserSettings { get; set; }
     
     private readonly MudTheme _theme = new();
-    //private bool _isDarkMode;
+    private const string SaveSettingsKey = "threedeedarkmodesetting";
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var result = await BrowserSettings.GetAsync<bool>(SaveSettingsKey);
+            if (result.Success)
+            {
+                ThemeProviderService.IsDarkMode = result.Value;
+            }
+            StateHasChanged();
+        }
+    }
+
+    private async Task SwitchTheme(bool isDarkTheme)
+    {
+        ThemeProviderService.IsDarkMode = isDarkTheme;
+        await BrowserSettings.SetAsync(SaveSettingsKey, isDarkTheme);
+    }
 }
 
 

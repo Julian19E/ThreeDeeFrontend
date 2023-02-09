@@ -1,19 +1,17 @@
+let stlViewer;
 
-export async function changeCanvasStyle(r, g, b){
-    let canvasParent = document.getElementById("blazorview3d");
-    //console.log(canvasParent.children);
-    //console.log(canvasParent.childNodes[0]);
-    
-    let canvas = canvasParent.firstElementChild;
-    console.log(canvas);
-    let ctx = canvas.getContext("webgl2");
-    console.log(r);
-    console.log(g);
-    console.log(b);
-    ctx.clearColor(r, g, b, 1);
-    ctx.clear(ctx.COLOR_BUFFER_BIT);
-    //ctx.globalCompositeOperation = 'destination-over'
-    //ctx.fillStyle = "#000000";
-    //ctx.fillRect(0, 0, canvas.width, canvas.height);   
-    
+export async function addModel(path, color, id){
+    if(stlViewer == null){
+        let elem = document.getElementById("stl_cont");
+        stlViewer = new StlViewer(elem, { models: [ {id: id, filename: path, color: color, rotationx: -1} ] });
+        console.log("instantiated");        
+    }
+    else{
+        stlViewer.add_model({ models: [ {id: id, filename: path, color: color, rotationx: -1} ] });
+        console.log("added. path: " + path);
+    }
+}
+
+export async function changeToColor(color, id){
+    stlViewer.set_color(id, color);
 }

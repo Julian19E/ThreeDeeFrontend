@@ -12,11 +12,15 @@ public class JsInteropService : IJsInteropService
             .InvokeAsync<IJSObjectReference>("import", "./js/renderController.js").AsTask());
     }
 
-    public async Task ChangeCanvasStyle(float[] rgbColors)
+    public async Task AddFile(string path, string color, int id)
     {
         IJSObjectReference module = await _jsApiModule.Value;
-        await module.InvokeVoidAsync("changeCanvasStyle", rgbColors[0], rgbColors[1], rgbColors[2]);
+        await module.InvokeVoidAsync("addModel", path, color, id);
     }
-    
-    
+
+    public async Task ChangeColor(string newColor, int id)
+    {
+        IJSObjectReference module = await _jsApiModule.Value;
+        await module.InvokeVoidAsync("changeToColor", newColor, id);
+    }
 }

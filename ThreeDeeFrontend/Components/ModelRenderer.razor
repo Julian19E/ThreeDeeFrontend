@@ -1,0 +1,32 @@
+﻿@using System.Diagnostics
+@using ThreeDeeFrontend.Services
+
+<div id="stl_cont" style="height: 31vw;"></div>
+
+@code {
+    
+    [Parameter]
+    public string ColorValue { get; set; }
+
+    [Inject]
+    public IJsInteropService JsInteropService { get; set; }
+
+    [Parameter]
+    public string Name { get; set; }
+    
+    [Parameter]
+    public int Id { get; set; }
+
+    public async Task ChangeColor(string newColor)
+    {
+        await JsInteropService.ChangeColor(newColor.Substring(0, 7), Id);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JsInteropService.AddFile($"/assets/{Name}.stl", ColorValue, Id);
+        }
+    }
+}

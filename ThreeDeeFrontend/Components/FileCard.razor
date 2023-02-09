@@ -1,7 +1,10 @@
-<MudCard>
+<MudCard Style="max-width: 50vw;">
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h6">Filename</MudText>
+            <MudText
+                Typo="Typo.h6">
+                @File.Name
+            </MudText>
         </CardHeaderContent>
         <CardHeaderActions>
             <MudIconButton 
@@ -9,29 +12,61 @@
                 Color="Color.Default" />
         </CardHeaderActions>
     </MudCardHeader>
-    <MudCardMedia Image="/assets/crown.png"/>
     <MudCardContent>
-        <ThreeDModelRenderer 
-            @ref="_threeDModelRendererRef"/>
-        <MudText>File author</MudText>
+        @if (_isPreview)
+        {
+            <ModelRenderer
+                @ref="_modelRendererRef"
+                Name="@File.Name"
+                Id="@File.Id" 
+                ColorValue="@_colorValue"/>
+        }
+        else
+        {
+            <MudCardMedia Image="assets/benchy.png" Style="height: 31vw;" />
+        }
+        <MudText>
+            erstellt von: @File.Author
+        </MudText>
         <MudText
             Typo="Typo.body2">
-            File description
+            @File.Description
         </MudText>
-        <FileHistoryTimeline/>
+        <MudRating
+            ReadOnly="true"
+            SelectedValue="4"/>
+        <MudExpansionPanels
+            MultiExpansion="true">
+            <MudExpansionPanel
+                Text="Modellhistorie">
+                <FileHistoryTimeline/>
+            </MudExpansionPanel>
+            <MudExpansionPanel
+                Text="GCode">
+            </MudExpansionPanel>
+            <MudExpansionPanel
+                Text="Kommentare">
+            </MudExpansionPanel>
+        </MudExpansionPanels>
     </MudCardContent>
     <MudCardActions>
+        @if (_isPreview)
+        {
+            <MudButton
+                OnClick="async () => await _modelRendererRef.ChangeColor(_colorValue)"
+                Variant="Variant.Text"
+                Color="Color.Primary">
+                color
+            </MudButton>
+        }
+        <MudColorPicker 
+            PickerVariant="PickerVariant.Dialog" 
+            @bind-Text="_colorValue" />
         <MudButton
-            OnClick="async () => await _threeDModelRendererRef.InitModel()"
+            OnClick="Switch"
             Variant="Variant.Text"
             Color="Color.Primary">
-            Render
-        </MudButton>
-        <MudButton
-            OnClick="_threeDModelRendererRef.ShowInfo"
-            Variant="Variant.Text"
-            Color="Color.Primary">
-            Info
+            Toggle 
         </MudButton>
     </MudCardActions>
 </MudCard>

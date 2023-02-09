@@ -35,7 +35,7 @@ namespace ThreeDeeFrontend {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MinimalFrontend.Localization.de", typeof(Localization_de).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ThreeDeeFrontend.Localization.de", typeof(Localization_de).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -5,6 +5,6 @@ namespace ThreeDeeFrontend.Services;
 public interface IThemeProviderService
 {
     bool IsDarkMode { get; set; }
-    float[] BackGroundColor();
-    EventCallback<float[]> BackgroundColorHasChanged { get; set; }
+    EventCallback<string> BackgroundColorHasChanged { get; set; }
+    string CurrentColor { get; }
 }

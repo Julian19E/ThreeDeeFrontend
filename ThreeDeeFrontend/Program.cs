@@ -1,6 +1,6 @@
-using Microsoft.Fast.Components.FluentUI;
 using MudBlazor.Services;
 using ThreeDeeFrontend.Controller;
+using ThreeDeeFrontend.Repositories;
 using ThreeDeeFrontend.Services;
 using ThreeDeeFrontend.ViewModels;
 
@@ -12,8 +12,7 @@ builder.Services.AddMudServices();
 builder.Services.AddScoped<TopMenuViewModel>();
 builder.Services.AddScoped<IJsInteropService, JsInteropService>();
 builder.Services.AddScoped<IThemeProviderService, ThemeProviderService>();
-builder.Services.AddScoped<IFileRepository>(sp => new FileRepository(
-    sp.GetService<HttpClient>()!, sp.GetService<IConfiguration>()!["UsersEndpoint"]));
+builder.Services.AddScoped<IFileRepository>(sp => new FileRepository(sp.GetService<HttpClient>()!, sp.GetService<IConfiguration>()!["UsersEndpoint"]));
 
 var app = builder.Build();
 
