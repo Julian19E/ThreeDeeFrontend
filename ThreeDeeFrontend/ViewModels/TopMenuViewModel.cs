@@ -6,7 +6,7 @@ public class TopMenuViewModel
 {
     public List<DropDownMenuItemModel> LibraryItems { get; } = new()
     {
-        new(Localization.DropDownPublicFiles, "/FilesOverview"),
+        new(Localization.DropDownPublicFiles, "/"),
         new(Localization.DropDownSharedFiles, "/"),
         new(Localization.DropDownPrivateFiles, "/"),
     };

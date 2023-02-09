@@ -1,7 +1,7 @@
 ﻿@using System.Diagnostics
 @using ThreeDeeFrontend.Services
 
-<div id="stl_cont" style="height: 31vw;"></div>
+<div id="stl_cont" style="height: 50vh; border-style: solid; border-width: 1px; border-radius: 4px; border-color: #f0f8ff36;"></div>
 
 @code {
     
@@ -19,14 +19,14 @@
 
     public async Task ChangeColor(string newColor)
     {
-        await JsInteropService.ChangeColor(newColor.Substring(0, 7), Id);
+        await JsInteropService.ChangeColor(newColor[..7], Id);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JsInteropService.AddFile($"/assets/{Name}.stl", ColorValue, Id);
+            await JsInteropService.AddFile($"../assets/{Name}.stl", ColorValue, Id);
         }
     }
 }

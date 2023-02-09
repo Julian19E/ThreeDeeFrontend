@@ -8,6 +8,17 @@ public class FileRepository : IFileRepository
 {
     private readonly HttpClient _httpClient;
     private readonly string _serviceUrl;
+    public List<FileModel> Files { get; } = new()
+    {
+        new FileModel{Id = 0, Name = "Banshee", Author = "Nico"},
+        new FileModel{Id = 1, Name = "PrinterTest", Author = "Nico"},
+        new FileModel{Id = 2, Name = "Falcon", Author = "Gabriel" },
+        new FileModel{Id = 3, Name = "Lamp", Author = "Gabriel" },
+        new FileModel{Id = 4, Name = "Nut", Author = "Julian"},
+        new FileModel{Id = 5, Name = "GiftBoxOuter", Author = "Julian"},
+        new FileModel{Id = 6, Name = "Bolt", Author = "Hannes"},
+        new FileModel{Id = 7, Name = "GiftBoxInner", Author = "Hannes"}
+    };
 
     public FileRepository(HttpClient httpClient, string serviceUrl)
     {
