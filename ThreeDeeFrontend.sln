@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeDeeInfrastructure", "T
 		{6F1774A4-6278-45DF-BCB1-D33E9CE09728} = {6F1774A4-6278-45DF-BCB1-D33E9CE09728}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{5720DA63-0F8B-4674-961D-F7557829E91E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
