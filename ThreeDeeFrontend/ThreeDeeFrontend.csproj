@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <AssemblyName>ThreeDeeFrontend</AssemblyName>
         <RootNamespace>ThreeDeeFrontend</RootNamespace>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -43,6 +44,12 @@
     <ItemGroup>
       <ProjectReference Include="..\ThreeDeeApplication\ThreeDeeApplication.csproj" />
       <ProjectReference Include="..\ThreeDeeInfrastructure\ThreeDeeInfrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
