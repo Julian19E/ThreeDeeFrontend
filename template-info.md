@@ -268,13 +268,242 @@ In der launchsettings.jon könnt ihr z.B. den Port ändern unter dem die Anwendu
 ```
 
 ### Aufruf JS Methoden
-### Localization,
+Javascript kann in Blazor über die JSInterop Library aufgerufen werden, welche in einer Blazor Solution automatisch integriert ist. Für kleinere Projekte kann im Webroot-Folder eine einzelne .js Datei angelegt werden, welche global in der _Layout.cshtml referenzoert wird und dann von allen Blazor Komponenten oder Pages aufgerufen werden kann. Für größere Projekte können auch modulbasierte .js Dateien verwendet werden.
+Die Registrierung bzw. die Aufrufe dürfen in der jeweiligen Komponente oder Page frühenstens in der OnAfterRender Methode (wichtig: nicht in OnParameterSet oder OnInitialized, das wird ne Exception schmeißen) aufgerufen werden.
+
+#### Globale Verwendung
+Im Body der _Layout.cshtml (bzw. der index.html bei Webassembly) wird die Datei folgendermaßen referenziert:
+```html
+<script src="subfolderXYZ/dateiname.js"></script>
+```
+In Komponenten oder Pages, in welchen Javascriptfunktionen aufgerufen werden sollen, muss ein IJSRuntime Objekt injiziert werden (eine Registrierung des Services in der Program.cs ist nicht notwendig, weil es ein Standardservice ist):
+
+```csharp
+[Inject]
+public IJSRuntime JsRuntime { get; set; }
+```
+
+Beispielhaft die javascript Funktionen (ohne Rückgabe), die über CSharp aufgerufen werden sollen:
+```js
+async function keineRueckgabeKeineParameter(){
+    console.log('hello world')
+}
+
+async function keineRueckgabeMitParameter(paramOne, paramTwo){
+    console.log(paramOne + paramTwo)
+}
+```
+
+Der Aufruf der JS Funktionen erfolgt dann so:
+```csharp
+// keine Rückgabe, keine Parameter
+await JsRuntime.InvokeVoidAsync("keineRueckgabeKeineParameter");
+
+// keine Rückgabe, mit Parameter
+await JsRuntime.InvokeVoidAsync("keineRueckgabeMitParameter", "hello", "world");
+```
+
+Funktionsaufrufe mit Rückgabe müssen über InvokeAsync<T> erfolgen. Nutzt primitive Datentypen, wenn javascript json Objekte zurückgibt müssen diese mit dem JsonDeserializer deserialisiert werden (vice versa wenn json Objekte als Paramter erwartet werden). Ist erstmal egal, deshalb Beispiele mit strings. 
+
+Aufzurufende js Funktionen:
+```js
+async function mitRueckgabeOhneParameter(){
+    return 'hello world'
+}
+
+async function mitRueckgabeMitParameter(paramOne, paramTwo){
+    return paramOne + paramTwo
+}
+```
+
+Aufruf in C#:
+```csharp
+// mit Rückgabe, keine Parameter
+string returnValueOne = await JsRuntime.InvokeAsync<string>("mitRueckgabeOhneParameter");
+Console.WriteLine(returnValueOne);
+
+// mit Rückgabe, mit Parameter
+string returnValueTwo = await JsRuntime.InvokeVoidAsync("mitRueckgabeMitParameter", "hello", "world");
+Console.WriteLine(returnValueTwo);
+```
+
+#### Modulbasierte Verwendung
+Die globale Referenzierung ist hier nicht notwendig, dafür muss die .js Datei in der Komponente oder Page (oder beliebigen Services, die von den Komponenten verwendet werden) initialisiert werden.
+
+Die js Funktionen müssen mit export als Module markiert sein:
+
+```js
+export async function mitRueckgabeOhneParameter(){
+    return 'hello world'
+}
+// usw.
+```
+
+Beispiel für Initialisierung in einer Komponente mit Namen "DropdownSelection":
+
+```csharp
+[Inject]
+public IJSRuntime JsRuntime { get; set; }
+private IJSObjectReference _module;
+
+// Registrierung
+protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+    if (firstRender)
+    {
+        var jsApiModule = new Lazy<Task<IJSObjectReference>>(() => JsRuntime
+            .InvokeAsync<IJSObjectReference>(
+                "import", "./subfolderXYZ/dateiname.js").AsTask());
+        _module = await _jsApiModule.Value;        
+    }
+}
+```
+
+Aufruf der Funktionen über das Modul statt über das Runtimeobjekt:
+```csharp
+// keine Rückgabe, keine Parameter
+await _module_.InvokeVoidAsync("keineRueckgabeKeineParameter");
+
+// keine Rückgabe, mit Parameter
+await _module.InvokeVoidAsync("keineRueckgabeMitParameter", "hello", "world");
+
+// mit Rückgabe, ohne Parameter
+string returnValueOne = await _module.InvokeAsync<string>("mitRueckgabeOhneParameter");
+Console.WriteLine(returnValueOne);
+
+// mit Rückgabe, mit Parameter
+string returnValueTwo = await _module.InvokeVoidAsync(
+    "mitRueckgabeMitParameter", "hello", "world");
+Console.WriteLine(returnValueTwo);
+```
+
+### Localization
+String, welche in der UI angezeigt werden, sollten nicht direkt in den Komponenten hardgecoded werden. Egal ob die Anwendung ein- oder mehrsprachig ist, die Referenzierung erfolgt ober sog. Localizationfiles (.xml). Wenn mehrere Sprachen verwendet werden, muss einfach eine weitere Datei mit demselben Namen plus Sprachcode (hier de) erstellt werden. Nach der Erzeugung der Datei erfolgt die Bearbeitung in der IDE über ein integriertes Tool (Rider und Visual Studio):
+
+![](readmeAssets/localization.png)
+
+Da die automatisch generierte .cs Klasse statisch ist, erfolgt der Aufruf auch statisch über Klassenname.Property:
+
+```html
+<p>Unternehmensname: @Localization.CompanyName</p>
+```
+
+oder in C# (s. TopMenuViewModel.cs):
+
+```csharp
+public List<DropDownMenuItemModel> LibraryItems { get; } = new()
+{
+    new(Localization.DropDownPublicFiles, "/"),
+    new(Localization.DropDownSharedFiles, "/"),
+    new(Localization.DropDownPrivateFiles, "/"),
+};
+```
+
 ### Standards
+Kleine Auswahl an Standards (teilweise C# spezifisch):
+- Schreibweise immer CamelCase
+- Parameter klein
+- Properties groß
+- Felder klein mit underscore
+- Konstanten groß
+- lokale Variablen klein ohne underscore
+- Methodennamen groß
+- Klassennamen groß: `Klassenname`
+- Interfaces analog der Klasse mit "I" davor: `IKlasenname`
+- strings mit doppelten Anführungszeichen: `"name"`
+- chars mit einfachen Anführungszeichen: `'A'`
+- Statements werden mit einem Semikolon beendet
+- geschweifte Klammern werden in einer neuen Zeile geschrieben
+
+```csharp
+// Properties
+public string PropertyName { get; set; }
+private string PropertyName { get; set; }
+
+// Felder
+private string _propertyName;
+
+// Konstanten
+private const string Endpoint = "/abc";
+
+// Konstruktor
+public Klassenname(object objectOne, objectTwo)
+{
+    // do stuff
+}
+
+// Methode
+private int Methodenname(int integerOne)
+{
+    // lokale Variable
+    int integerTwo = 42;
+    return intgerOne + integerTwo;    
+}
+```
+
+Variablen können explizit oder implizit deklarirt werden. Strings könnt ihr komfortabel über Interpolation zusammenfügen:
+
+```csharp
+private string Methodenname(int integerOne)
+{
+    // explizit typisierte lokale Variable
+    int integerTwo = 42;
+
+    // implizit typisierte lokale Variable
+    var stringOne = "Hello World";
+
+    // Stringinterpolation
+    return $"{stringone}, {integerOne} plus {integerTwo} ist {integerOne + integerTwo}"
+}
+```
+
+Die Initialisierung von Objekten kann in mehreren Varianten erfolgen:
+
+```csharp
+Klassenname objektNameOne = new();
+
+// oder
+var objektnameTwo = new Klassenname();
+```
+
+Wenn der Objekttyp z.B. über eine Liste bereits deklariert ist:
+```csharp
+public class User
+{
+    private string _age;
+    private string _name;
+
+    public User(int age, string name)
+    {
+        _age = age;
+        _name = name;
+    }
+}
+
+List<User> users = new()
+{
+    new(20, "UserOne"),
+    new(30, "UserTwo")
+}
+```
 
 ## Intermediate
+### Blazor Server vs. Blazor Webassembly
+Blazor bietet beide Möglichkeiten. In Serverprojekten findet nach dem klassischen Client Server Modell der Workload beim Server statt und die generierten Dateien beim Client (Brower) gerendert. WebAssembly ist noch relativ neu und nutzt die immer performanteren Prozessorkapazitäten beim Client. Das initiale Laden der Dateien dauert länger, der Workload ist beim Client angesiedelt und alle anschlißenden Prozesse sind deutlich schneller.  
+
+Letzteres Modell eignet sich besser für komplexe Anwendungen, die relativ unabhängig von externen Services sind. Es reicht ein kleiner Server, d.h. die Skalierbarkeit ist besser. Beide Modelle können auch als Hybridlösung kombiniert werden.  
+
+Was für uneren Usecase besser ist müssen wir zusammen überlegen. Das Template ist als Serverprojekt angelegt, eine Umstellung ist aber relativ einfach falls wir doch Webassembly nutzen wollen.
+
+mehr dazu hier: [MS Doku Blazor Hostingmodelle](https://learn.microsoft.com/de-de/aspnet/core/blazor/hosting-models?view=aspnetcore-7.0)
+
+### async und await
+
+
+### Lambdas
 ### Events und Event Callbacks
 ### Dependency Injection
-### UnitTests, 
+### UnitTests
 ### Navigation
 ### Browser Storage
 ### Generische Typen
