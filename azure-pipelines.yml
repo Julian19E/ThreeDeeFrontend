@@ -19,7 +19,7 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        repository: 'hansendockedin/hwr' 
+        repository: 'hansendockedin/web-app-frontend' 
         containerRegistry: 'Dockerhub registry'
         command: 'buildAndPush'
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
