@@ -58,10 +58,21 @@
     {
         if (firstRender)
         {
-            var result = await BrowserSettings.GetAsync<bool>(SaveSettingsKey);
-            if (result.Success)
+            try
             {
-                ThemeProviderService.IsDarkMode = result.Value;
+                var result = await BrowserSettings.GetAsync<bool>(SaveSettingsKey);
+                if (result.Success)
+                {
+                    ThemeProviderService.IsDarkMode = result.Value;
+                }
+                else
+                {
+                    await BrowserSettings.SetAsync(SaveSettingsKey, ThemeProviderService.IsDarkMode);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
             StateHasChanged();
         }
@@ -70,7 +81,14 @@
     private async Task SwitchTheme(bool isDarkTheme)
     {
         ThemeProviderService.IsDarkMode = isDarkTheme;
-        await BrowserSettings.SetAsync(SaveSettingsKey, isDarkTheme);
+        try
+        {
+            await BrowserSettings.SetAsync(SaveSettingsKey, isDarkTheme);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }
 
