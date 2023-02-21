@@ -32,7 +32,7 @@ Das Styling erfolgt ebenfalls analog entweder global (Pfad zur style.css im root
 
 **isoliert im Markup**
 ```html
-<style>    
+<style>
     .center {
         margin: auto;
         box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
@@ -55,7 +55,7 @@ C# Code kann innerhalb des Markups mit denselben syntaktischen Regeln wie auch s
 <div>
     @foreach (var file in _filteredFiles)
     {
-        <p>Filename: @file.Name</p>
+    <p>Filename: @file.Name</p>
     }
 </div>
 ```
@@ -64,35 +64,35 @@ Die UI-Logik der Komponente (Methoden etc.) befindet sich entweder in derselben 
 
 ```html
 <PageTitle>3D File Management System</PageTitle>
-<MudThemeProvider 
-    IsDarkMode="@ThemeProviderService.IsDarkMode"
-    IsDarkModeChanged="async x => await SwitchTheme(x)" 
-    Theme="_theme"/>
+<MudThemeProvider
+        IsDarkMode="@ThemeProviderService.IsDarkMode"
+        IsDarkModeChanged="async x => await SwitchTheme(x)"
+        Theme="_theme"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudText
-            Typo="Typo.h5"
-            Class="ml-3">
+                Typo="Typo.h5"
+                Class="ml-3">
             Logo
         </MudText>
         <div class="d-flex justify-center flex-grow-1 gap-4">
-            <DropDownMenu 
-                Label="Library" 
-                MenuItems="@TopMenuViewModel.LibraryItems"/>
-            <DropDownMenu 
-                Label="Files" 
-                MenuItems="@TopMenuViewModel.FilesItems"/>
+            <DropDownMenu
+                    Label="Library"
+                    MenuItems="@TopMenuViewModel.LibraryItems"/>
+            <DropDownMenu
+                    Label="Files"
+                    MenuItems="@TopMenuViewModel.FilesItems"/>
         </div>
-        <MudSwitch 
-            @bind-Checked="@ThemeProviderService.IsDarkMode"
-            Color="Color.Primary" T="bool" 
-            Label="@(ThemeProviderService.IsDarkMode ? "DARK" : "LIGHT")"/>
-        <MudIconButton 
-            Icon="@Icons.Material.Filled.ManageAccounts" 
-            Color="Color.Inherit" 
-            Edge="Edge.End" />
+        <MudSwitch
+                @bind-Checked="@ThemeProviderService.IsDarkMode"
+                Color="Color.Primary" T="bool"
+                Label="@(ThemeProviderService.IsDarkMode ? "DARK" : "LIGHT")"/>
+        <MudIconButton
+                Icon="@Icons.Material.Filled.ManageAccounts"
+                Color="Color.Inherit"
+                Edge="Edge.End" />
     </MudAppBar>
     <MudMainContent>
         @Body
@@ -154,8 +154,8 @@ Pages mit dem jeweils eindeutigen Identifier nur **einmal**, da über den Identi
 @page "/"
 <MudContainer MaxWidth="MaxWidth.Large">
     <MudText Style="padding-top: 50px;" Typo="Typo.h2">Files</MudText>
-    <SearchBar 
-        FilteredFilesHaveChanged="async (v) => await OnFilteredValueChanged(v)"/>
+    <SearchBar
+            FilteredFilesHaveChanged="async (v) => await OnFilteredValueChanged(v)"/>
     <MudGrid Style="margin-top: 25px;">
         ...
     </MudGrid>
@@ -176,7 +176,7 @@ public partial class SearchBar
 Auf der Page Index.razr (s.o.) wird vor der schließenden Klammer `>` des öffnenden Tags `<SearchBar` der Wert des Parameters gesetzt (hier eine Callbackfunktion). Parameter müssen mit dem `[Parameter]` **Decorator** versehen werden, **public** sein und über einen **getter und setter** verfügen.
 
 ### Properties (C#)
-C# benötigt anders als Java keine Referenzen öffentlicher Properties auf private Felder. Properties werden über die Keywords `get;` oder `set;` (alternativ `init;` oder `private set;`) in Verbindung mit dem `protected, internal oder public` Access Modifier initialisiert. 
+C# benötigt anders als Java keine Referenzen öffentlicher Properties auf private Felder. Properties werden über die Keywords `get;` oder `set;` (alternativ `init;` oder `private set;`) in Verbindung mit dem `protected, internal oder public` Access Modifier initialisiert.
 
 ```csharp
 public List<int> Ages { get; } = new();
@@ -250,7 +250,7 @@ builder.Services.AddScoped<IJsInteropService<ModelRenderer>, JsInteropService<Mo
 builder.Services.AddScoped<IThemeProviderService, ThemeProviderService>();
 ```
 
-In der launchsettings.jon könnt ihr z.B. den Port ändern unter dem die Anwendung lokal läuft (falls es da nen Konflikt geben sollte).
+In der launchsettings.json könnt ihr z.B. den Port ändern unter dem die Anwendung lokal läuft (falls es da nen Konflikt geben sollte).
 ```json
 {
   "profiles": {
@@ -303,7 +303,7 @@ await JsRuntime.InvokeVoidAsync("keineRueckgabeKeineParameter");
 await JsRuntime.InvokeVoidAsync("keineRueckgabeMitParameter", "hello", "world");
 ```
 
-Funktionsaufrufe mit Rückgabe müssen über InvokeAsync<T> erfolgen. Nutzt primitive Datentypen, wenn javascript json Objekte zurückgibt müssen diese mit dem JsonDeserializer deserialisiert werden (vice versa wenn json Objekte als Paramter erwartet werden). Ist erstmal egal, deshalb Beispiele mit strings. 
+Funktionsaufrufe mit Rückgabe müssen über InvokeAsync<T> erfolgen. Nutzt primitive Datentypen, wenn javascript json Objekte zurückgibt müssen diese mit dem JsonDeserializer deserialisiert werden (vice versa wenn json Objekte als Paramter erwartet werden). Ist erstmal egal, deshalb Beispiele mit strings.
 
 Aufzurufende js Funktionen:
 ```js
@@ -489,18 +489,33 @@ List<User> users = new()
 
 ## Intermediate
 ### Blazor Server vs. Blazor Webassembly
-Blazor bietet beide Möglichkeiten. In Serverprojekten findet nach dem klassischen Client Server Modell der Workload beim Server statt und die generierten Dateien beim Client (Brower) gerendert. WebAssembly ist noch relativ neu und nutzt die immer performanteren Prozessorkapazitäten beim Client. Das initiale Laden der Dateien dauert länger, der Workload ist beim Client angesiedelt und alle anschlißenden Prozesse sind deutlich schneller.  
+Blazor bietet beide Möglichkeiten. In Serverprojekten findet nach dem klassischen Client Server Modell der Workload beim Server statt und die generierten Dateien beim Client (Brower) gerendert. WebAssembly ist noch relativ neu und nutzt die immer performanteren Prozessorkapazitäten beim Client. Das initiale Laden der Dateien dauert länger, der Workload ist beim Client angesiedelt und alle anschlißenden Prozesse sind deutlich schneller.
 
-Letzteres Modell eignet sich besser für komplexe Anwendungen, die relativ unabhängig von externen Services sind. Es reicht ein kleiner Server, d.h. die Skalierbarkeit ist besser. Beide Modelle können auch als Hybridlösung kombiniert werden.  
+Letzteres Modell eignet sich besser für komplexe Anwendungen, die relativ unabhängig von externen Services sind. Es reicht ein kleiner Server, d.h. die Skalierbarkeit ist besser. Beide Modelle können auch als Hybridlösung kombiniert werden.
 
 Was für uneren Usecase besser ist müssen wir zusammen überlegen. Das Template ist als Serverprojekt angelegt, eine Umstellung ist aber relativ einfach falls wir doch Webassembly nutzen wollen.
 
 mehr dazu hier: [MS Doku Blazor Hostingmodelle](https://learn.microsoft.com/de-de/aspnet/core/blazor/hosting-models?view=aspnetcore-7.0)
 
 ### async und await
+Async und Await sind Schlüsselwörter in C# für asynchrone Programmierung. Sie ermöglichen es einem Programm, eine asynchrone Aufgabe auszuführen und in der Zwischenzeit andere Aufgaben auszuführen, ohne auf das Ergebnis der asynchronen Aufgabe warten zu müssen.
 
+Das Async-Schlüsselwort wird verwendet, um eine Methode als asynchron zu deklarieren. Es ist eine Möglichkeit für eine Methode, eine asynchrone Aufgabe auszuführen und währenddessen nicht zu blockieren. Async-Methode gibt normalerweise eine Aufgabe (Task) zurück.
 
+Das Await-Schlüsselwort wird innerhalb einer Async-Methode verwendet, um auf das Ergebnis einer asynchronen Aufgabe zu warten, ohne die Ausführung des Programms zu blockieren. Wenn Sie eine Methode mit dem Await-Schlüsselwort aufrufen, wird die Ausführung der aktuellen Methode angehalten, bis die asynchrone Aufgabe abgeschlossen ist. Währenddessen kann das Programm andere Aufgaben ausführen.
+
+```csharp
+public async Task<int> DoSomethingAsync()
+{
+    // Führt eine asynchrone Aufgabe aus
+    await Task.Delay(1000);
+
+    // Gibt das Ergebnis zurück
+    return 42;
+}
+```
 ### Lambdas
+x
 ### Events und Event Callbacks
 ### Dependency Injection
 ### UnitTests
@@ -511,7 +526,7 @@ mehr dazu hier: [MS Doku Blazor Hostingmodelle](https://learn.microsoft.com/de-d
 ### Docker
 
 ## Advanced
-### Clean Architecture 
+### Clean Architecture
 ### Lifecycles
 ### Repository Pattern
 ### MVVM Pattern,
