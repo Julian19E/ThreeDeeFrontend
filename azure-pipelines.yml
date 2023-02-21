@@ -1,5 +1,5 @@
 trigger:
-- master
+- development
 
 resources:
 - repo: self
@@ -24,4 +24,4 @@ stages:
         command: 'buildAndPush'
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
-          latest
+          development
