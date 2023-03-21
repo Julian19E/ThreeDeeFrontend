@@ -17,8 +17,8 @@ public class FileRepository : IFileRepository
         new FileModel{Id = 0, Name = "Banshee", Author = "Nico", Filetype = Filetype.Public},
         new FileModel{Id = 1, Name = "PrinterTest", Author = "Nico", Filetype = Filetype.Public},
         new FileModel{Id = 2, Name = "Falcon", Author = "Gabriel", Filetype = Filetype.Public},
-        new FileModel{Id = 3, Name = "Lamp", Author = "Gabriel", Filetype = Filetype.Private},
-        new FileModel{Id = 4, Name = "Nut", Author = "Julian", Filetype = Filetype.Private},
+        new FileModel{Id = 3, Name = "Lamp", Author = "Gabriel", Filetype = Filetype.Public},
+        new FileModel{Id = 4, Name = "Nut", Author = "Julian", Filetype = Filetype.Public},
         new FileModel{Id = 5, Name = "GiftBoxOuter", Author = "Julian", Filetype = Filetype.Private},
         new FileModel{Id = 6, Name = "Bolt", Author = "Hannes", Filetype = Filetype.Shared},
         new FileModel{Id = 7, Name = "GiftBoxInner", Author = "Hannes", Filetype = Filetype.Shared}
