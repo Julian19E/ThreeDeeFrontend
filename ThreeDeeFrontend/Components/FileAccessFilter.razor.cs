@@ -8,12 +8,13 @@ public partial class FileAccessFilter
     [Parameter] 
     public EventCallback<Filetype> FiletypeHasChanged { get; set; }
     
-    private Filetype _status;
+    [Parameter] 
+    public Filetype Status { get; set; }
 
     private async Task OnStatusButtonClicked(Filetype status)
     {
-        _status = status;
-        await FiletypeHasChanged.InvokeAsync(_status);
+        Status = status;
+        await FiletypeHasChanged.InvokeAsync(Status);
     }
     
 }
