@@ -5,7 +5,7 @@
         Color="_status == Filetype.Public ? Color.Primary : Color.Default"
         Variant="Variant.Filled"
         OnClick="async () => { await OnStatusButtonClicked(Filetype.Public); }"
-        Icon="@Icons.Material.Filled.PublicOff">
+        Icon="@Icons.Material.Filled.Public">
     </MudIconButton>
 </MudTooltip>
 <MudTooltip Text="Display Private Files">
@@ -13,7 +13,7 @@
         Color="_status == Filetype.Private ? Color.Primary : Color.Default"
         Variant="Variant.Filled"
         OnClick="async () => { await OnStatusButtonClicked(Filetype.Private); }"
-        Icon="@Icons.Material.Filled.FolderShared">
+        Icon="@Icons.Material.Filled.PublicOff">
     </MudIconButton>
 </MudTooltip>
 <MudTooltip Text="Display Shared Files">
@@ -21,6 +21,6 @@
         Color="_status == Filetype.Shared ? Color.Primary : Color.Default"
         Variant="Variant.Filled"
         OnClick="async () => { await OnStatusButtonClicked(Filetype.Shared); }"
-        Icon="@Icons.Material.Filled.Public">
+        Icon="@Icons.Material.Filled.FolderShared">
     </MudIconButton>
 </MudTooltip>
