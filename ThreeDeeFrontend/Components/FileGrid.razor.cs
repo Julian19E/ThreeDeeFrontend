@@ -10,7 +10,7 @@ public partial class FileGrid
     private NavigationManager NavigationManager { get; set; }
     
     [Parameter]
-    public List<FileModel> FilteredFiles { get; set; }
+    public List<FileModel> Files { get; set; }
     
     private void OnButtonClicked(int fileId)
     {
