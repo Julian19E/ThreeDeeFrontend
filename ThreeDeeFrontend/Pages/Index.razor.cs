@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using ThreeDeeApplication.Enums;
 using ThreeDeeApplication.Models;
 using ThreeDeeInfrastructure.Repositories;
 
@@ -11,24 +12,40 @@ public partial class Index
     [Inject]
     private IFileRepository FileRepository { get; set; }
     
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
 
-    private List<FileModel> _filteredFiles;
+    private List<FileModel> _filteredFiles = new();
+    
+    private Filetype Status;
 
     protected override void OnParametersSet()
     {
-        _filteredFiles = FileRepository.MockData;
+        ChooseFilePerStatus();
+    }
+    
+    private async Task ChooseFilePerStatus()
+    {
+        _filteredFiles.Clear();
+        foreach (FileModel model in FileRepository.MockData)
+        {
+            if (model.Filetype == Status)
+            {
+                _filteredFiles.Add(model);
+            }
+        }
     }
 
-    private void OnButtonClicked(int fileId)
+    private async Task OnStatusButtonClicked(Filetype status)
     {
-        NavigationManager.NavigateTo($"/model/{fileId}");
+        Status = status;
+        await ChooseFilePerStatus();
     }
+    
+   
 
     private async Task OnFilteredValueChanged(List<FileModel> filtered)
     {
         _filteredFiles = filtered;
         await InvokeAsync(StateHasChanged);
     }
+
 }
