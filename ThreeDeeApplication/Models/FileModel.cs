@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ThreeDeeApplication.Enums;
 
 namespace ThreeDeeApplication.Models;
 
@@ -14,4 +15,5 @@ public class FileModel
     public int Downloads { get; set; }
     public float AverageRating { get; set; }
     public List<int> GCodeIds { get; set; } = new();
+    public Filetype Filetype { get; set; }
 }

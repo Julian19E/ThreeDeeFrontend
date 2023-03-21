@@ -8,8 +8,8 @@ public class TopMenuViewModel
     public List<DropDownMenuItemModel> LibraryItems { get; } = new()
     {
         new(Localization.DropDownPublicFiles, "/"),
-        new(Localization.DropDownSharedFiles, "/"),
-        new(Localization.DropDownPrivateFiles, "/"),
+        new(Localization.DropDownSharedFiles, "/sharedfile"),
+        new(Localization.DropDownPrivateFiles, "/privatefile"),
     };
     
     public List<DropDownMenuItemModel> FilesItems { get; } = new()
