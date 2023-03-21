@@ -13,8 +13,6 @@ public partial class FilesView
     [Inject]
     private IFileRepository FileRepository { get; set; }
     
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
 
     private List<FileModel> _filteredFiles = new();
 
@@ -24,8 +22,8 @@ public partial class FilesView
     {
         ChooseFilePerStatus();
     }
-
-    private void ChooseFilePerStatus()
+    
+    private async Task ChooseFilePerStatus()
     {
         _filteredFiles.Clear();
         foreach (FileModel model in FileRepository.MockData)
@@ -37,16 +35,13 @@ public partial class FilesView
         }
     }
 
-    private void OnStatusButtonClicked(Filetype status)
+    private async Task OnStatusButtonClicked(Filetype status)
     {
         Status = status;
-        ChooseFilePerStatus();
+        await ChooseFilePerStatus();
     }
     
-    private void OnButtonClicked(int fileId)
-    {
-        NavigationManager.NavigateTo($"/model/{fileId}");
-    }
+   
 
     private async Task OnFilteredValueChanged(List<FileModel> filtered)
     {

@@ -3,48 +3,16 @@
 @using ThreeDeeApplication.Enums
 <MudContainer MaxWidth="MaxWidth.Large">
     <MudText Style="padding-top: 50px;" Typo="Typo.h2">Files</MudText>
-    <div style="width: 100%; ">
-        <div style="width: 50%; ">
-           
-            <MudButton
-                Color="Status == Filetype.Public ? Color.Primary : Color.Default"
-                Variant="Variant.Filled"
-                OnClick="() => { OnStatusButtonClicked(Filetype.Public); }">
-                Public
-            </MudButton>
-            <MudButton
-                Color="Status == Filetype.Private ? Color.Primary : Color.Default"
-                Variant="Variant.Filled"
-                OnClick="() => { OnStatusButtonClicked(Filetype.Private); }">
-                Private
-            </MudButton>
-            <MudButton
-                Color="Status == Filetype.Shared ? Color.Primary : Color.Default"
-                Variant="Variant.Filled"
-                OnClick="() => { OnStatusButtonClicked(Filetype.Shared); }">
-                Shared
-            </MudButton>
-        </div>
-        <div style="width: 50%; ">
+    <div style="width: 100%; display: flex;">
+        <div style="width: 100%; margin-right: 20px; ">
             <SearchBar
                 FilteredFilesHaveChanged="async (v) => await OnFilteredValueChanged(v)"/>
         </div>
+        <div style="display: flex; flex-direction: row-reverse; align-items: flex-end; gap: 10px"> 
+            <FileAccessFilter FiletypeHasChanged="OnStatusButtonClicked"></FileAccessFilter>
+        </div>
     </div>
-
-
-
-    <MudGrid Style="margin-top: 25px;">
-        @foreach (var file in _filteredFiles)
-        {
-            <MudItem xs="3" Style="padding: 0; margin: 0;">
-                <MudContainer
-                    Style="padding: 0; margin: 0;"
-                    Class="d-flex align-center justify-center mud-width-full">
-                    <FileCardPreview
-                        File="@file"
-                        ButtonClicked="OnButtonClicked"/>
-                </MudContainer>
-            </MudItem>
-        }
-    </MudGrid>
+    
+    <FileGrid FilteredFiles="_filteredFiles"></FileGrid>
+    
 </MudContainer>
