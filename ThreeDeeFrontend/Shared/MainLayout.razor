@@ -29,6 +29,9 @@
                 Label="Files" 
                 MenuItems="@TopMenuViewModel.FilesItems"/>
         </div>
+        <div style="padding-right: 50px;">
+            <LoginDisplay/>
+        </div>
         <MudSwitch 
             @bind-Checked="@ThemeProviderService.IsDarkMode"
             Color="Color.Primary" T="bool" 
