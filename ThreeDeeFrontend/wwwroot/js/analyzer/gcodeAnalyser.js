@@ -1,7 +1,7 @@
 var gcodeProcessorWorker = new Worker('js/analyzer/gcodeProcessor.js');
+var doit;
 var gcodeLines = undefined;
 var selectedSettings = 0;
-var renderType = 0;
 var results = Array(4);
 var resultFieldIds = [];
 var currentCalculationSetting = 0;
@@ -10,17 +10,10 @@ var currentCalculationSetting = 0;
 gcodeProcessorWorker.onmessage = function (e) {
     if ("resultFormat" in e.data) {
         addResultTableEntries(e.data.resultFormat);
-    } else if ("progress" in e.data) {
-        setProgressBarPercent(e.data.progress);
-    } else if ("complete" in e.data) {
-        document.getElementById("progress").style = "display:none;";
-        document.getElementById("calculateButton").style = "margin-bottom: 20px; display:true;";
-        setProgressBarPercent(0);
     } else if ("result" in e.data) {
         results[currentCalculationSetting] = e.data.result;
         $("#layerNumber").text("(Generating...)");
         displayResult();
-        generateView();
         initCanvas();
     } else if ("layers" in e.data) {
         gcodeProcessorWorker.postMessage("cleanup");
@@ -39,65 +32,26 @@ function displayResult() {
     }
 }
 
-function setProgressBarPercent(percent) {
-    var progressBar = document.getElementById("progressBar");
-    progressBar.style = "-webkit-transition: none; transition: none;width: " + percent + "%;";
-    progressBar.setAttribute("aria-valuenow", percent);
-    progressBar.innerHTML = percent + "%";
-}
-
-function selectRenderType(newRenderType) {
-    document.getElementById("selectRender" + renderType).className = "btn btn-primary";
-    document.getElementById("selectRender" + newRenderType).className = "btn btn-primary active";
-    renderType = newRenderType;
-    setRenderType(renderType);
-}
-
-function displayProgressBar() {
-    setProgressBarPercent(0);
-    document.getElementById("progress").style = "margin-bottom: 14px; display:true;";
-    document.getElementById("calculateButton").style = "display:none;";
-}
-
-function refreshStatistics() {
-    if (gcodeLines != undefined) {
-        displayProgressBar();
-        gcodeProcessorWorker.postMessage([gcodeLines, simpleSettingsDict(selectedSettings)]);
-        currentCalculationSetting = selectedSettings;
-    }
-}
-
-
 function registerUpload(){
     const inputElement = document.getElementById("input");
     inputElement.addEventListener("change", readFile, false);
 }
 
-
 function readFile() {
-    const fileList = this.files; /* now you can work with the file list */
+    const fileList = this.files; 
     var f = fileList[0];
     if (f) {
-        var size;
-        if (f.size / 1024 / 1024 < 1) {
-            size = (f.size / 1024).toFixed(1) + "KB";
-        } else {
-            size = (f.size / 1024 / 1024).toFixed(1) + "MB";
-        }
-        //dropzone.innerHTML = f.name + " - " + size;
         var r = new FileReader();
         r.onload = function (e) {
             gcodeLines = e.target.result.split(/\s*[\r\n]+\s*/g);
-            refreshStatistics();
+            if (gcodeLines != undefined) {
+                gcodeProcessorWorker.postMessage([gcodeLines, simpleSettingsDict(selectedSettings)]);
+                currentCalculationSetting = selectedSettings;
+            }
         }
         r.readAsText(f);
-        displayProgressBar();
     }
 }
-
-
-var doit;
-
 
 function onloadInit() {
     window.onresize = function () {
@@ -170,21 +124,5 @@ function addResultTableEntries(resultFormat) {
                 cell.appendChild(span);
             }
         }
-    }
-
-    for (key in resultFormat) {
-        if (resultFormat[key].table == "gcodeStatsPerAxis") {
-            var table = document.getElementById("gcodeStatsPerAxis");
-            var row = table.insertRow(-1);
-            var cell = row.appendChild(document.createElement('th'));
-            cell.innerHTML = resultFormat[key].discription;
-            for (var i = 0; i < resultFormat[key].fieldId.length; i++) {
-                cell = row.insertCell(-1);
-                var span = document.createElement("span");
-                span.id = resultFormat[key].fieldId[i];
-                resultFieldIds.push(resultFormat[key].fieldId[i]);
-                cell.appendChild(span);
-            }
-        }
-    }
+    }    
 }

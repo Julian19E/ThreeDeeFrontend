@@ -13,12 +13,9 @@ var minCoord;
 var lastRenderTime;
 var maxRenderDelay = 50;
 var delayWithoutRender;
-
-function setRenderType(newRenderType) {
-    renderType = newRenderType;
-    addSpeedLables();
-    setRender(currentRender);
-}
+var dragging = false;
+var lastX;
+var lastY;
 
 function addSpeedLables() {
     if (renderType == 0) {
@@ -51,6 +48,46 @@ function initCanvas() {
     lastRenderTime = 0;
     delayWithoutRender = 0;
     addSpeedLables();
+
+    canvas.addEventListener('wheel', function (e) {
+        var oldScale = scale;
+        scale = scale * (1 - 1 * event.deltaY / 2000);
+        e.preventDefault();
+        var rect = canvas.getBoundingClientRect();
+        scaleAboutPoint(Math.round(e.clientX - rect.left), Math.round(e.clientY - rect.top), oldScale);
+    }, false);
+
+
+    canvas.addEventListener('mousedown', function (e) {
+        dragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        e.preventDefault();
+    }, false);
+
+    window.addEventListener('mousemove', function (e) {
+        if (dragging) {
+            var deltaX = e.clientX - lastX;
+            var deltaY = e.clientY - lastY;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            if (lastRenderTime > maxRenderDelay) {
+                setTranslate([deltaX, deltaY]);
+            } else {
+                translate[0] += deltaX;
+                translate[1] += deltaY;
+                setTransform();
+            }
+        }
+    }, false);
+
+    window.addEventListener('mouseup', function () {
+        dragging = false;
+        if (delayWithoutRender > 0) {
+            delayWithoutRender = 0;
+            setRender(currentRender);
+        }
+    }, false);
 }
 
 function resizeCanvas() {
@@ -390,46 +427,3 @@ function changeLayer(e) {
     }
 }
 
-/*
-canvas.addEventListener('wheel', function (e) {
-    var oldScale = scale;
-    scale = scale * (1 - 1 * event.deltaY / 2000);
-    e.preventDefault();
-    var rect = canvas.getBoundingClientRect();
-    scaleAboutPoint(Math.round(e.clientX - rect.left), Math.round(e.clientY - rect.top), oldScale);
-}, false);*/
-
-var dragging = false;
-var lastX;
-var lastY;
-
-canvas.addEventListener('mousedown', function (e) {
-    dragging = true;
-    lastX = e.clientX;
-    lastY = e.clientY;
-    e.preventDefault();
-}, false);
-
-window.addEventListener('mousemove', function (e) {
-    if (dragging) {
-        var deltaX = e.clientX - lastX;
-        var deltaY = e.clientY - lastY;
-        lastX = e.clientX;
-        lastY = e.clientY;
-        if (lastRenderTime > maxRenderDelay) {
-            setTranslate([deltaX, deltaY]);
-        } else {
-            translate[0] += deltaX;
-            translate[1] += deltaY;
-            setTransform();
-        }
-    }
-}, false);
-
-window.addEventListener('mouseup', function () {
-    dragging = false;
-    if (delayWithoutRender > 0) {
-        delayWithoutRender = 0;
-        setRender(currentRender);
-    }
-}, false);
