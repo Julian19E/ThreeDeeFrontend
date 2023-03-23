@@ -6,6 +6,7 @@ using ThreeDeeInfrastructure.Repositories;
 using ThreeDeeInfrastructure.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using ThreeDeeFrontend.Areas.Identity;
 using ThreeDeeFrontend.Data;
 
@@ -29,18 +30,56 @@ builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
     string clientIdEnv = Environment.GetEnvironmentVariable("GOOGLE_OAUTH_CLIENT_ID");
     string clientId = string.IsNullOrEmpty(clientIdEnv) 
-        ? configurationRoot.GetSection("Secrets")["ClientId"] 
+        ? configurationRoot.GetSection("Secrets:Google")["ClientId"] 
           ?? throw new InvalidOperationException("Client ID not found.")
         : clientIdEnv;
     
     string clientSecretEnv = Environment.GetEnvironmentVariable("GOOGLE_OAUTH_CLIENT_SECRET");
     string clientSecret = string.IsNullOrEmpty(clientSecretEnv) 
-        ? configurationRoot.GetSection("Secrets")["ClientSecret"] 
+        ? configurationRoot.GetSection("Secrets:Google")["ClientSecret"] 
           ?? throw new InvalidOperationException("Client secret not found.")
         : clientSecretEnv;
 
     googleOptions.ClientId = clientId;
     googleOptions.ClientSecret = clientSecret;
+});
+
+builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
+{
+    string clientIdEnv = Environment.GetEnvironmentVariable("MICROSOFT_OAUTH_CLIENT_ID");
+    string clientId = string.IsNullOrEmpty(clientIdEnv) 
+        ? configurationRoot.GetSection("Secrets:Microsoft")["ClientId"] 
+          ?? throw new InvalidOperationException("Client ID not found.")
+        : clientIdEnv;
+    
+    string clientSecretEnv = Environment.GetEnvironmentVariable("MICROSOFT_OAUTH_CLIENT_SECRET");
+    string clientSecret = string.IsNullOrEmpty(clientSecretEnv) 
+        ? configurationRoot.GetSection("Secrets:Microsoft")["ClientSecret"] 
+          ?? throw new InvalidOperationException("Client secret not found.")
+        : clientSecretEnv;
+
+    microsoftOptions.ClientId = clientId;
+    microsoftOptions.ClientSecret = clientSecret;
+});
+
+builder.Services.AddAuthentication().AddGitHub(gitHubOptions =>
+{
+    string clientIdEnv = Environment.GetEnvironmentVariable("GITHUB_OAUTH_CLIENT_ID");
+    string clientId = string.IsNullOrEmpty(clientIdEnv) 
+        ? configurationRoot.GetSection("Secrets:GitHub")["ClientId"] 
+          ?? throw new InvalidOperationException("Client ID not found.")
+        : clientIdEnv;
+    
+    string clientSecretEnv = Environment.GetEnvironmentVariable("GITHUB_OAUTH_CLIENT_SECRET");
+    string clientSecret = string.IsNullOrEmpty(clientSecretEnv) 
+        ? configurationRoot.GetSection("Secrets:GitHub")["ClientSecret"] 
+          ?? throw new InvalidOperationException("Client secret not found.")
+        : clientSecretEnv;
+
+    gitHubOptions.ClientId = clientId;
+    gitHubOptions.ClientSecret = clientSecret;
+    gitHubOptions.CallbackPath = "/signin-github";
+    gitHubOptions.Scope.Add("read:user");
 });
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
