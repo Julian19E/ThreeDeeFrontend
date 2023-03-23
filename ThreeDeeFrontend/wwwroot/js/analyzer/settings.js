@@ -15,83 +15,15 @@ var defaultSettings = {
     "lookAheadBuffer": {"discription": "Look-ahead Buffer Size", "value": [16], "fieldId": ["lookAheadBuffer"], "fieldType": "value", "table": undefined, "unit": undefined }
 }
 
-var globalSettings = {
-    "collapsePanels": { "value": [false, false] }
-}
 
 var settingSets = Array(4);
 
 function loadSettings() {
-    for (var i = 0; i < 4; i++) {
-        var settingsStorage = localStorage.getItem("gcodeAnalyserSettings" + i);
-        var storageDict;
-        if (settingsStorage == undefined) {
-            storageDict = {};
-        } else {
-            storageDict = JSON.parse(settingsStorage);
-        }
-        settingSets[i] = JSON.parse(JSON.stringify(defaultSettings)); // Deep clone
-        for (key in defaultSettings) {
-            if (key in storageDict && storageDict[key] != undefined && !("resetValue" in defaultSettings[key])) {
-                settingSets[i][key].value = storageDict[key];
-            }
-        }
-    }
-
-    var settingsStorage = localStorage.getItem("gcodeAnalyserGlobalSettings");
-    var storageDict;
-    if (settingsStorage == undefined) {
-        storageDict = {};
-    } else {
-        storageDict = JSON.parse(settingsStorage);
-    }
-
-    for (key in globalSettings) {
-        if (key in storageDict && storageDict[key] != undefined && !("resetValue" in globalSettings[key])) {
-            globalSettings[key] = storageDict[key];
-        }
+    for (var i = 0; i < 4; i++) {        
+        settingSets[i] = JSON.parse(JSON.stringify(defaultSettings)); // Deep clone        
     }
 }
 
-function exportSettings() {
-    saveSettings({ "target": { "id": "" } });
-    location.href = "data:application/octet-stream," + encodeURIComponent(localStorage.getItem("gcodeAnalyserSettings" + selectedSettings));
-}
-
-function importSettings(settings) {
-    localStorage.setItem("gcodeAnalyserSettings" + selectedSettings, settings);
-    loadSettings();
-    displaySettings();
-}
-
-function saveSettings(event) {
-    var fieldId = event.target.id;
-    if (event.target.id == "relativeExtrusion") {
-        fieldId = "absoluteExtrusion";
-    }
-    var storageDict = {};
-    for (key in settingSets[selectedSettings]) {
-        storageDict[key] = Array(settingSets[selectedSettings][key].fieldId.length);
-        for (var i = 0; i < settingSets[selectedSettings][key].fieldId.length; i++) {
-            if (fieldId == settingSets[selectedSettings][key].fieldId[i]) {
-                var newValue;
-                if (event.target.id == "relativeExtrusion") {
-                    newValue = false;
-                } else {
-                    newValue = event.target[settingSets[selectedSettings][key].fieldType];
-                    if (settingSets[selectedSettings][key].fieldType == "value") {
-                        newValue = parseFloat(newValue);
-                    }
-                }
-                storageDict[key][i] = newValue;
-                settingSets[selectedSettings][key].value[i] = newValue;
-            } else {
-                storageDict[key][i] = settingSets[selectedSettings][key].value[i];
-            }
-        }
-    }
-    localStorage.setItem("gcodeAnalyserSettings" + selectedSettings, JSON.stringify(storageDict));
-}
 
 function simpleSettingsDict() {
     var simpleSettings = {};
@@ -103,8 +35,4 @@ function simpleSettingsDict() {
         }
     }
     return simpleSettings;
-}
-
-function saveGlobalSettings() {
-    localStorage.setItem("gcodeAnalyserGlobalSettings", JSON.stringify(globalSettings));
 }

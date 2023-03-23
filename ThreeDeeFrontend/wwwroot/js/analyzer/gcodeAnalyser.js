@@ -5,76 +5,8 @@ var renderType = 0;
 var results = Array(4);
 var resultFieldIds = [];
 var currentCalculationSetting = 0;
-var histogram = Array(4);
-/*
-var dropzone = document.getElementById('dropzone');
-dropzone.style.cursor = 'pointer';
-dropzone.onmouseover = function () {
-    this.style.border = '3px dashed #909090';
-};
-dropzone.onmouseout = function () {
-    this.style.border = '3px dashed #cccccc';
-};
 
-makeDroppable(document.getElementById("importSettingsButton"), readSettings);
-
-$(document).ready(function () {
-    $('#whatsnew').popover({
-        content: "&#8226 Fixed viewer bug caused by firmware retraction. <br /> &#8226 Added support for M203 M205 M566 gcode. <br /> By now all of \"Printer Attribut\" settings can be updated on the fly. <br /> &#8226 Add filament usage display in cm^3 <br /> &#8226 Added fan speed color visualization in viewer. <br /> &#8226 Added setting to account for speed optimizaion limitation caused by firmware lookahead buffer size. <br /> The default buffer size for marlin is 16.",
-        html: true
-    });
-});
-
-makeDroppable(dropzone, readFile);
-
-function makeDroppable(element, callback) {
-
-    var input = document.createElement('input');
-    input.setAttribute('type', 'file');
-    input.setAttribute('multiple', false);
-    input.style.display = 'none';
-
-    input.addEventListener('change', triggerCallback);
-    element.appendChild(input);
-
-    element.addEventListener('dragover', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        element.classList.add('dragover');
-    });
-
-    element.addEventListener('dragleave', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        element.classList.remove('dragover');
-    });
-
-    element.addEventListener('drop', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        element.classList.remove('dragover');
-        triggerCallback(e);
-    });
-
-    element.addEventListener('click', function () {
-        input.value = null;
-        input.click();
-    });
-
-    function triggerCallback(e) {
-        var files;
-        if (e.dataTransfer) {
-            files = e.dataTransfer.files;
-        } else if (e.target) {
-            files = e.target.files;
-        }
-        callback.call(null, files);
-    }
-}
-*/
  
-
-
 gcodeProcessorWorker.onmessage = function (e) {
     if ("resultFormat" in e.data) {
         addResultTableEntries(e.data.resultFormat);
@@ -93,9 +25,6 @@ gcodeProcessorWorker.onmessage = function (e) {
     } else if ("layers" in e.data) {
         gcodeProcessorWorker.postMessage("cleanup");
         initRender(e.data.layers, settingSets[currentCalculationSetting].filamentDiameter.value[0]);
-    } else if ("histogram" in e.data) {
-        histogram[currentCalculationSetting] = e.data.histogram;
-        drawHistogram();
     }
 }
 
@@ -115,15 +44,6 @@ function setProgressBarPercent(percent) {
     progressBar.style = "-webkit-transition: none; transition: none;width: " + percent + "%;";
     progressBar.setAttribute("aria-valuenow", percent);
     progressBar.innerHTML = percent + "%";
-}
-
-function selectSettings(newSelectedSettings) {
-    document.getElementById("selectSettings" + selectedSettings).className = "btn btn-info";
-    document.getElementById("selectSettings" + newSelectedSettings).className = "btn btn-info active";
-    selectedSettings = newSelectedSettings;
-    displaySettings();
-    displayResult();
-    drawHistogram();
 }
 
 function selectRenderType(newRenderType) {
@@ -147,16 +67,6 @@ function refreshStatistics() {
     }
 }
 
-function readSettings(evt) {
-    var f = evt[0];
-    if (f) {
-        var r = new FileReader();
-        r.onload = function (e) {
-            importSettings(e.target.result);
-        }
-        r.readAsText(f);
-    }
-}
 
 function registerUpload(){
     const inputElement = document.getElementById("input");
@@ -191,7 +101,6 @@ var doit;
 
 function onloadInit() {
     window.onresize = function () {
-        drawHistogram();
         clearTimeout(doit);
         doit = setTimeout(resizeCanvas, 100);
     };
@@ -209,74 +118,7 @@ function onloadInit() {
     $("#canvasVerticalSlider").on("slide", function (event, ui) { setRender(ui.value) });
     loadSettings();
     registerUpload();
-    collapsePanels();
-    addTableEntries();
-    displaySettings();
     initCanvas();
-}
-
-function savePanelCollapse(index) {
-    globalSettings.collapsePanels.value[index] = !globalSettings.collapsePanels.value[index];
-    saveGlobalSettings();
-}
-
-function collapsePanels() {
-    if (globalSettings.collapsePanels.value[0] == true) {
-        document.getElementById("collapse0").className = "panel-collapse collapse";
-    } else {
-        document.getElementById("collapse0").className = "panel-collapse collapse in";
-    }
-    if (globalSettings.collapsePanels.value[1] == true) {
-        document.getElementById("collapse1").className = "panel-collapse collapse";
-    } else {
-        document.getElementById("collapse1").className = "panel-collapse collapse in";
-    }
-}
-
-function addTableEntries() {
-    var printerAttribute = document.getElementById("printerAttribute");
-    for (key in defaultSettings) {
-        if (defaultSettings[key].table == "printerAttribute") {
-            var row = printerAttribute.insertRow(-1);
-            var cell = row.appendChild(document.createElement('td'));
-            cell.innerHTML = defaultSettings[key].discription;
-            for (var i = 0; i < defaultSettings[key].fieldId.length; i++) {
-                cell = row.insertCell(-1);
-                var div = document.createElement("div");
-                var input = document.createElement("input");
-                input.className = "form-control";
-                input.type = "text";
-                input.pattern = "[0-9]*";
-                input.setAttribute("onchange", "saveSettings(event)");
-                input.id = defaultSettings[key].fieldId[i];
-                input.style.background = "transparent";
-                div.appendChild(input);
-                div.className = "input-group-sm";
-                cell.appendChild(div);
-            }
-            cell = row.insertCell(-1);
-            cell.innerHTML = defaultSettings[key].unit;
-        }
-    }
-}
-
-function displaySettings() {
-    for (key in settingSets[selectedSettings]) {
-        if (settingSets[selectedSettings][key].table == "printerAttribute") {
-            for (var i = 0; i < settingSets[selectedSettings][key].fieldId.length; i++) {
-                document.getElementById(settingSets[selectedSettings][key].fieldId[i]).value = settingSets[selectedSettings][key].value[i];
-            }
-        } else {
-            if (settingSets[selectedSettings][key].fieldId[0] != undefined) {
-                if (settingSets[selectedSettings][key].fieldId[0] == "absoluteExtrusion") {
-                    document.getElementById("absoluteExtrusion").checked = settingSets[selectedSettings][key].value[0];
-                    document.getElementById("relativeExtrusion").checked = !settingSets[selectedSettings][key].value[0];
-                } else {
-                    document.getElementById(settingSets[selectedSettings][key].fieldId[0])[settingSets[selectedSettings][key].fieldType] = settingSets[selectedSettings][key].value[0];
-                }
-            }
-        }
-    }
 }
 
 function addResultTableEntries(resultFormat) {

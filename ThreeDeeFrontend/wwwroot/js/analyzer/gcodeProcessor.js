@@ -535,8 +535,6 @@ function GcodeProcessor() {
         var layerMax = [-Infinity, -Infinity];
         var layerMin = [Infinity, Infinity];
 
-        // Speed Time Histogram
-        this.STHistogram = [];
 
         // Calculate information required for calculating time
         while (true) {
@@ -719,8 +717,7 @@ function GcodeProcessor() {
                     totalAccelerationDistance += gcode.phaseDistance[0];
                     totalConstantSpeedDistance += gcode.phaseDistance[1];
                     totalDeccelerationDistance += gcode.phaseDistance[2];
-                    // Speed Time Histogram
-                    this.calculateSTHistogram(gcode);
+                    
                 }
 
                 // Clear Gcode
@@ -772,7 +769,6 @@ function GcodeProcessor() {
         result["printSpeed"] = (printDistance / totalPrintTime).toFixed(1) + " mm/s";
         result["travelSpeed"] = (travelDistance / totalTravelTime).toFixed(1) + " mm/s";
         postMessage({ "result": result });
-        postMessage({ "histogram": this.STHistogram });
 
         // Export Layers
         if (extrusions.length > 0) {
@@ -816,56 +812,7 @@ function GcodeProcessor() {
         layerMins = undefined;
     }
 
-    this.calculateSTHistogram = function (gcode) {
-        var phaseSpeed = [gcode.phaseSpeed[0], gcode.phaseSpeed[1], gcode.phaseSpeed[1], gcode.phaseSpeed[2]];
-        for (var i = 0; i < 3; i++) {
-            var phaseTime = gcode.phaseTime[i];
-            if (phaseTime > 0) {
-                var startSpeed = phaseSpeed[i];
-                var endSpeed = phaseSpeed[i + 1];
-                var startIndex = Math.floor(startSpeed);
-                var endIndex = Math.floor(endSpeed);
-                if (startIndex == endIndex) {
-                    if (this.STHistogram.length < startIndex + 1) {
-                        for (var k = this.STHistogram.length; k < startIndex + 1; k++) {
-                            this.STHistogram.push([k, 0, 0]);
-                        }
-                    }
-                    if (gcode.printMove) {
-                        this.STHistogram[startIndex][1] += phaseTime;
-                    } else {
-                        this.STHistogram[startIndex][2] += phaseTime;
-                    }
-                } else {
-                    for (var j = startIndex; j <= endIndex; j++) {
-                        if (this.STHistogram.length < j + 1) {
-                            for (var k = this.STHistogram.length; k < j + 1; k++) {
-                                this.STHistogram.push([k, 0, 0]);
-                            }
-                        }
-                        var s0;
-                        var s1;
-                        if (j == 0) {
-                            s0 = startSpeed;
-                        } else {
-                            s0 = j;
-                        }
-                        if (j == endIndex) {
-                            s1 = endSpeed;
-                        } else {
-                            s1 = j + 1;
-                        }
-                        if (gcode.printMove) {
-                            this.STHistogram[j][1] += phaseTime * (s1 - s0) / (endSpeed - startSpeed);
-                        } else {
-                            this.STHistogram[j][2] += phaseTime * (s1 - s0) / (endSpeed - startSpeed);
-
-                        }
-                    }
-                }
-            }
-        }
-    }
+    
 
     this.calculateBasicMovementInfo = function (gcode) {
         // Relative coord
