@@ -19,6 +19,7 @@ builder.Services.AddScoped<IJsInteropService<ModelRenderer>, JsInteropService<Mo
 builder.Services.AddScoped<IThemeProviderService, ThemeProviderService>();
 builder.Services.AddScoped<IGCodeSettingsRepository, GCodeSettingsRepository>();
 builder.Services.AddScoped<IFileRepository>(sp => new FileRepository(sp.GetService<HttpClient>()!, sp.GetService<IConfiguration>()!["UsersEndpoint"]));
+builder.Services.AddScoped<IFilesGridViewModel, FilesGridViewModel>();
 
 var app = builder.Build();
 
