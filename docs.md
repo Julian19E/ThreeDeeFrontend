@@ -1,11 +1,11 @@
 # Dokumentation
 
 ## URLS 
-[Swagger Specs für Mocked REST API](http://194.233.162.63:3001)
-[Mocked REST API](http://194.233.162.63:3000)
-[REST API (nicht immer up do date)](http://194.233.162.63:8080)
-[REST API Swagger Specs](http://194.233.162.63:8080/swagger-ui)
-[Frontend](http://194.233.162.63:5000)
+- [Swagger Specs für Mocked REST API](http://194.233.162.63:3001)
+- [Mocked REST API](http://194.233.162.63:3000)
+- [REST API (nicht immer up do date)](http://194.233.162.63:8080)
+- [REST API Swagger Specs](http://194.233.162.63:8080/swagger-ui)
+- [Frontend](http://194.233.162.63:5000)
 
 ## Abgabe
 Dokumentation von
