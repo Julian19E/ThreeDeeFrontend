@@ -53,23 +53,29 @@ function readFile() {
     }
 }
 
+var slider  = undefined;
 function onloadInit() {
+    slider = document.getElementById("myRange");
+    slider.min = 1;
+    slider.max = 2;
+    slider.step = 1;
     window.onresize = function () {
         clearTimeout(doit);
         doit = setTimeout(resizeCanvas, 100);
     };
-    // Request Result Format
     gcodeProcessorWorker.postMessage("getResultFormat");
-    // Printer Attribute
-    $("#canvasVerticalSlider").slider({
+    /*$("#canvasVerticalSlider").slider({
         orientation: "vertical",
         min: 1,
         max: 2,
         step: 1,
         values: 1,
-    });
-    $("#canvasVerticalSlider").height($("#renderCanvas").height() - 96);
-    $("#canvasVerticalSlider").on("slide", function (event, ui) { setRender(ui.value) });
+    });*/
+    //$("#canvasVerticalSlider").height($("#renderCanvas").height() - 96);
+    slider.oninput = function() {
+        setRender(this.value)
+    }
+    //$("#canvasVerticalSlider").on("slide", function (event, ui) { setRender(ui.value) });
     loadSettings();
     registerUpload();
     initCanvas();

@@ -39,7 +39,10 @@ function addSpeedLables() {
     }
 }
 
+var slider = undefined;
+
 function initCanvas() {
+    slider = document.getElementById("myRange");
     canvas = document.getElementById("renderCanvas");
     ctx = canvas.getContext('2d');
     layers = undefined;
@@ -64,6 +67,13 @@ function initCanvas() {
         lastY = e.clientY;
         e.preventDefault();
     }, false);
+
+
+    canvas.addEventListener('mousewheel', mouseWheelEvent);
+    document.getElementById("canvasVerticalSliderContainer").addEventListener('mousewheel', changeLayer);
+    canvas.addEventListener('DOMMouseScroll', mouseWheelEvent);
+    document.getElementById("canvasVerticalSliderContainer").addEventListener('DOMMouseScroll', changeLayer);
+
 
     window.addEventListener('mousemove', function (e) {
         if (dragging) {
@@ -95,7 +105,7 @@ function resizeCanvas() {
     var width = document.getElementById('renderCanvasContainer').offsetWidth - 36;
     canvas.width = width;
     canvas.height = height;
-    $("#canvasVerticalSlider").height(height - 96);
+    //$("#canvasVerticalSlider").height(height - 96);
     if (layers != undefined) {
         setTransform();
     }
@@ -138,7 +148,8 @@ function initRender(layerDict, filamentD) {
         $("#layerNumber").text("");
         return;
     }
-    $('#canvasVerticalSlider').slider("option", "max", layers.length);
+    slider.max = layers.length;
+    //$('#canvasVerticalSlider').slider("option", "max", layers.length);
     maxCoord = layerDict.maxCoord;
     minCoord = layerDict.minCoord;
     maxSpeed = layerDict.maxSpeed;
@@ -153,7 +164,8 @@ function initRender(layerDict, filamentD) {
     translate = [canvas.width / 2 - (maxCoord[0] + minCoord[0]) / 2 * scale, canvas.height / 2 - (maxCoord[1] + minCoord[1]) / 2 * scale];
     currentRender = Math.floor(layers.length / 2) + 1;
     addSpeedLables();
-    $('#canvasVerticalSlider').slider("option", "value", currentRender);
+    slider.value = currentRender;
+    //$('#canvasVerticalSlider').slider("option", "value", currentRender);
     resizeCanvas();
 }
 
@@ -383,13 +395,6 @@ function speedToColor(speed) {
 
 var changeLayerDelta = 0;
 
-// For Chrome
-canvas.addEventListener('mousewheel', mouseWheelEvent);
-document.getElementById("canvasVerticalSliderContainer").addEventListener('mousewheel', changeLayer);
-// For Firefox
-canvas.addEventListener('DOMMouseScroll', mouseWheelEvent);
-document.getElementById("canvasVerticalSliderContainer").addEventListener('DOMMouseScroll', changeLayer);
-
 function mouseWheelEvent(e) {
     var delta = e.wheelDelta ? e.wheelDelta : -e.detail * 40;
     var oldScale = scale;
@@ -421,7 +426,8 @@ function changeLayer(e) {
         }
         if (previousRender != currentRender) {
             setRender(currentRender);
-            $("#canvasVerticalSlider").slider("option", "value", currentRender);
+            slider.value = currentRender;
+            //$("#canvasVerticalSlider").slider("option", "value", currentRender);
         }
         changeLayerDelta = 0;
     }

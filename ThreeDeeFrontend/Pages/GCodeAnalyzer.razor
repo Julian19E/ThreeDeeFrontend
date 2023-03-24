@@ -1,33 +1,33 @@
 @page "/analyzer"
 
-<div class="container-fluid" id="bodyDiv" style="width: 1200px;">
+<MudContainer id="bodyDiv" MaxWidth="MaxWidth.Large">
+
 
     <div class="row marbot20" align="center">
         <input type="file" id="input" multiple/>
     </div>
-    <div class="row" align="center">
+    <div>
         <div class="panel-heading" align="right">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3"
-                 align="center">
+            <div>
                 <span>Viewer</span>
                 <span id="layerNumber"></span>
             </div>
-            <div class="btn-group" data-toggle="buttons">
-            </div>
         </div>
-        <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        <div style="display: flex; height: 100%;">
+            <div style="width: 100px;">
                 <table id="speedLable">
                 </table>
             </div>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" id="renderCanvasContainer">
+            <div id="renderCanvasContainer" style="width: 100%;">
                 <canvas id="renderCanvas"></canvas>
             </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" id="canvasVerticalSliderContainer">
+            <div style="width: 150px;" id="canvasVerticalSliderContainer">
                 <div>
                     <span id="scroll">Scroll Mouse Wheel Here</span>
                 </div>
-                <div id="canvasVerticalSlider"></div>
+                <div id="canvasVerticalSlider" style="rotate: 270deg;">
+                    <input type="range" orient="vertical" id="myRange">
+                </div>
             </div>
         </div>
     </div>
@@ -40,4 +40,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</MudContainer>
