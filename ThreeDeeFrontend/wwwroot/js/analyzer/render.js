@@ -101,7 +101,7 @@ function initCanvas() {
 }
 
 function resizeCanvas() {
-    var height = 640;
+    var height = 500;
     var width = document.getElementById('renderCanvasContainer').offsetWidth - 36;
     canvas.width = width;
     canvas.height = height;
@@ -162,7 +162,8 @@ function initRender(layerDict, filamentD) {
         scale = yScale;
     }
     translate = [canvas.width / 2 - (maxCoord[0] + minCoord[0]) / 2 * scale, canvas.height / 2 - (maxCoord[1] + minCoord[1]) / 2 * scale];
-    currentRender = Math.floor(layers.length / 2) + 1;
+    //currentRender = Math.floor(layers.length / 2) + 1;
+    currentRender = 1
     addSpeedLables();
     slider.value = currentRender;
     //$('#canvasVerticalSlider').slider("option", "value", currentRender);
@@ -177,7 +178,7 @@ function renderCanvas(layerNumber) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.restore();
-    renderGrid();
+    //renderGrid();
     renderLayer(layerIndex);
     lastRenderTime = new Date().getTime() - startTime;
 }
@@ -208,7 +209,7 @@ function renderGrid() {
 }
 
 function renderLayer(layerIndex) {
-    console.log("Rendering layer " + layerIndex);
+    //console.log("Rendering layer " + layerIndex);
     var layerHeight;
 
     if (layerIndex == 0) {

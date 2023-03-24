@@ -26,6 +26,7 @@ function displayResult() {
         var key = resultFieldIds[i];
         if (results[selectedSettings] != undefined && results[selectedSettings][key] != undefined) {
             document.getElementById(key).innerHTML = results[selectedSettings][key];
+            //console.log(results[selectedSettings][key]);
         } else {
             document.getElementById(key).innerHTML = "";
         }
@@ -64,33 +65,28 @@ function onloadInit() {
         doit = setTimeout(resizeCanvas, 100);
     };
     gcodeProcessorWorker.postMessage("getResultFormat");
-    /*$("#canvasVerticalSlider").slider({
-        orientation: "vertical",
-        min: 1,
-        max: 2,
-        step: 1,
-        values: 1,
-    });*/
-    //$("#canvasVerticalSlider").height($("#renderCanvas").height() - 96);
+    
     slider.oninput = function() {
         setRender(this.value)
     }
-    //$("#canvasVerticalSlider").on("slide", function (event, ui) { setRender(ui.value) });
     loadSettings();
     registerUpload();
     initCanvas();
 }
 
 function addResultTableEntries(resultFormat) {
+    let key;
+    let cell;
     var gcodeStatsCount = 0;
     for (key in resultFormat) {
         if (resultFormat[key].table == "gcodeStats") {
             gcodeStatsCount++;
         }
     }
-    var maxRow = Math.ceil(gcodeStatsCount / 2);
+    var maxRow = Math.ceil(gcodeStatsCount / 1);
     var gcodeStatsTableContent = [Array(maxRow), Array(maxRow)];
-    var row = 0;
+    //console.log(Array[maxRow])
+    let row = 0;
     var col = 0;
     for (key in resultFormat) {
         if (resultFormat[key].table == "gcodeStats") {
@@ -105,29 +101,50 @@ function addResultTableEntries(resultFormat) {
             col++;
         }
     }
+    
+    let cellLeft = undefined;
+    let cellRight = undefined;
 
-    for (var i = 0; i < maxRow; i++) {
-        var table = document.getElementById("gcodeStats");
-        var row = table.insertRow(-1);
-        for (var j = 0; j < 2; j++) {
-            var key = gcodeStatsTableContent[j][i];
-            if (key == undefined) {
-                var cell = row.appendChild(document.createElement('th'));
-                cell.setAttribute("colspan", 2);
-                break;
-            }
-            var cell = row.appendChild(document.createElement('th'));
-            cell.innerHTML = resultFormat[key].discription;
+    for (let i = 0; i < maxRow; i++) {
+        const table = document.getElementById("gcodeStats");
+        row = table.insertRow(-1);
+        for (let j = 0; j < 1; j++) {
+            key = gcodeStatsTableContent[j][i];
+            
             if (key.startsWith("Category")) {
-                cell.className = "bg-info text-center col-xs-6 col-sm-6 col-md-6 col-lg-6";
+                if (cellLeft !== undefined){
+                    cellLeft.style.borderBottomLeftRadius = "4px";
+                    cellRight.style.borderBottomRightRadius = "4px";
+                }
+                const cell0 = row.appendChild(document.createElement('th'));
+                cell0.setAttribute("colspan", 2);
+                cell0.style.height = "30px";
+                cell0.style.backgroundColor = "transparent";
+                const row1 = table.insertRow(-1);
+                let cell = row1.appendChild(document.createElement('th'));
+                cell.innerHTML = resultFormat[key].discription;                
                 cell.setAttribute("colspan", 2);
+                cell.className = "statstable";
+                cell.style.textAlign = "center";
+                cell.style.paddingTop = "10px";
+                cell.style.paddingBottom = "10px";
+                cell.style.fontSize = "16px";
+                cell.style.borderTopLeftRadius = "4px";
+                cell.style.borderTopRightRadius = "4px";
+                cell.style.backgroundColor = "#776be7";
             } else {
-                cell.className = "col-xs-3 col-sm-3 col-md-3 col-lg-3";
-                cell = row.insertCell(-1);
-                cell.className = "col-xs-3 col-sm-3 col-md-3 col-lg-3";
-                var span = document.createElement("span");
+                cellLeft = row.appendChild(document.createElement('th'));
+                cellLeft.innerHTML = resultFormat[key].discription;
+                cellLeft.className = "statstable";
+                cellLeft.style.textAlign = "left";
+                cellLeft.style.paddingLeft = "10px";                
+                cellRight = row.insertCell(-1);
+                cellRight.className = "statstable";
+                cellRight.style.textAlign = "left";
+                cellRight.style.paddingLeft = "10px";
+                const span = document.createElement("span");
                 span.id = key;
-                cell.appendChild(span);
+                cellRight.appendChild(span);
             }
         }
     }    

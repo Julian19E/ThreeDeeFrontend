@@ -1,15 +1,12 @@
 @page "/analyzer"
 
 <MudContainer id="bodyDiv" MaxWidth="MaxWidth.Large">
-
-
-    <div class="row marbot20" align="center">
+    <div class="row marbot20" align="center" style="margin-top: 20px;">
         <input type="file" id="input" multiple/>
     </div>
     <div>
         <div class="panel-heading" align="right">
             <div>
-                <span>Viewer</span>
                 <span id="layerNumber"></span>
             </div>
         </div>
@@ -22,21 +19,15 @@
                 <canvas id="renderCanvas"></canvas>
             </div>
             <div style="width: 150px;" id="canvasVerticalSliderContainer">
-                <div>
-                    <span id="scroll">Scroll Mouse Wheel Here</span>
-                </div>
-                <div id="canvasVerticalSlider" style="rotate: 270deg;">
-                    <input type="range" orient="vertical" id="myRange">
+                <div id="canvasVerticalSlider" style="height: 300px; display: grid;">
+                    <input style="rotate: 270deg; width: 300px;" type="range" id="myRange">
                 </div>
             </div>
         </div>
     </div>
-    <div class="row" align="center">
-        <div class="panel-heading">
-            <span>G-Code Statistics</span>
-        </div>
-        <table class="table table-bordered table-condensed table-centered-cells table-striped">
-            <tbody id="gcodeStats">
+    <div class="row" style="margin-bottom: 100px;" align="center">
+        <table class="statstable" style="max-width: 1000px; width: 100%;">
+            <tbody class="statstable" id="gcodeStats">
             </tbody>
         </table>
     </div>
