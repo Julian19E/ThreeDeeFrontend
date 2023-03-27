@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using ThreeDeeApplication.Enums;
 using ThreeDeeApplication.Models;
+using ThreeDeeFrontend.ViewModels;
 using ThreeDeeInfrastructure.Repositories;
 
 namespace ThreeDeeFrontend.Pages;
@@ -9,26 +11,14 @@ namespace ThreeDeeFrontend.Pages;
 public partial class Index
 {
     [Inject]
-    private IFileRepository FileRepository { get; set; }
-    
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
+    public IFilesGridViewModel Vm { get; set; }
 
-    private List<FileModel> _filteredFiles;
-
-    protected override void OnParametersSet()
+    protected override async Task OnAfterRenderAsync(bool isFirstRender)
     {
-        _filteredFiles = FileRepository.MockData;
-    }
-
-    private void OnButtonClicked(int fileId)
-    {
-        NavigationManager.NavigateTo($"/model/{fileId}");
-    }
-
-    private async Task OnFilteredValueChanged(List<FileModel> filtered)
-    {
-        _filteredFiles = filtered;
-        await InvokeAsync(StateHasChanged);
+        if (isFirstRender)
+        {
+            Vm.FilesChanged = EventCallback.Factory
+                .Create(this, async () => await InvokeAsync(StateHasChanged));
+        }
     }
 }

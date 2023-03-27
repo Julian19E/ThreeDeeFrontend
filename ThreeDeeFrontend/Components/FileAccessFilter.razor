@@ -1,0 +1,29 @@
+@using ThreeDeeApplication.Enums
+
+<MudTooltip Text="Display Public Files">
+    <MudIconButton
+        Color="Status == Filetype.Public ? Color.Primary : Color.Default"
+        Variant="Variant.Filled"
+        OnClick="async () => { await OnStatusButtonClicked(Filetype.Public); }"
+        Size="Size.Large"
+        Icon="@Icons.Material.Filled.Public">
+    </MudIconButton>
+</MudTooltip>
+<MudTooltip Text="Display Private Files">
+    <MudIconButton
+        Color="Status == Filetype.Private ? Color.Primary : Color.Default"
+        Variant="Variant.Filled"
+        OnClick="async () => { await OnStatusButtonClicked(Filetype.Private); }"
+        Size="Size.Large"
+        Icon="@Icons.Material.Filled.PublicOff">
+    </MudIconButton>
+</MudTooltip>
+<MudTooltip Text="Display Shared Files">
+    <MudIconButton
+        Color="Status == Filetype.Shared ? Color.Primary : Color.Default"
+        Variant="Variant.Filled"
+        OnClick="async () => { await OnStatusButtonClicked(Filetype.Shared); }"
+        Size="Size.Large"
+        Icon="@Icons.Material.Filled.FolderShared">
+    </MudIconButton>
+</MudTooltip>

@@ -1,0 +1,14 @@
+<MudGrid Style="margin-top: 25px;">
+    @foreach (var file in Files)
+    {
+        <MudItem xs="3" Style="padding: 0; margin: 0;">
+            <MudContainer
+                Style="padding: 0; margin: 0;"
+                Class="d-flex align-center justify-center mud-width-full">
+                <FileCardPreview
+                    File="@file"
+                    ButtonClicked="OnButtonClicked"/>
+            </MudContainer>
+        </MudItem>
+    }
+</MudGrid>
