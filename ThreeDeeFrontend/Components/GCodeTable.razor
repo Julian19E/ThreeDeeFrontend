@@ -1,12 +1,20 @@
 ﻿@using ThreeDeeApplication.Models
-<MudDataGrid T="GCodeSettingsModel"  Items="@GCodeSettingsRepository.MockData" SortMode="@SortMode.Multiple">
+<MudDataGrid Items="@GCodeSettingsRepository.MockData" SortMode="@SortMode.Multiple">
     <Columns>
-        <Column T="GCodeSettingsModel" Field="Downloads" />
-        <Column T="GCodeSettingsModel" Field="SuccessPercentage" />
-        <Column T="GCodeSettingsModel" Field="PrinterBrand" />
-        <Column T="GCodeSettingsModel" Field="PrinterModel" />
-        <Column T="GCodeSettingsModel" Field="XyzDimensions" Sortable="false" />
-        <Column T="GCodeSettingsModel" Field="Material"/>
+        <TemplateColumn CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudRating Size="@Size.Small" ReadOnly="true" SelectedValue="4" />
+                    <MudButton OnClick="OnButtonClicked" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Details</MudButton>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+        <PropertyColumn Property="x => x.Downloads" />
+        <PropertyColumn Property="x => x.SuccessPercentage" />
+        <PropertyColumn Property="x => x.PrinterBrand" />
+        <PropertyColumn Property="x => x.PrinterModel" />
+        <PropertyColumn Property="x => x.XyzDimensions" Sortable="false" />
+        <PropertyColumn Property="x => x.Material"/>
     </Columns>
     <PagerContent>
         <MudDataGridPager T="GCodeSettingsModel" />

@@ -33,29 +33,9 @@ function displayResult() {
     }
 }
 
-function registerUpload(){
-    const inputElement = document.getElementById("input");
-    inputElement.addEventListener("change", readFile, false);
-}
-
-function readFile() {
-    const fileList = this.files; 
-    var f = fileList[0];
-    if (f) {
-        var r = new FileReader();
-        r.onload = function (e) {
-            gcodeLines = e.target.result.split(/\s*[\r\n]+\s*/g);
-            if (gcodeLines != undefined) {
-                gcodeProcessorWorker.postMessage([gcodeLines, simpleSettingsDict(selectedSettings)]);
-                currentCalculationSetting = selectedSettings;
-            }
-        }
-        r.readAsText(f);
-    }
-}
 
 var slider  = undefined;
-function onloadInit() {
+async function onloadInit(file) {
     slider = document.getElementById("myRange");
     slider.min = 1;
     slider.max = 2;
@@ -70,8 +50,19 @@ function onloadInit() {
         setRender(this.value)
     }
     loadSettings();
-    registerUpload();
     initCanvas();
+    await parseGcode(file);
+}
+
+const parseGcode = async file => {
+    const response = await fetch(file)
+    const text = await response.text()
+    gcodeLines = text.split(/\s*[\r\n]+\s*/g);
+    if (gcodeLines != undefined) {
+        gcodeProcessorWorker.postMessage([gcodeLines, simpleSettingsDict(selectedSettings)]);
+        currentCalculationSetting = selectedSettings;
+    }
+    console.log(text)
 }
 
 function addResultTableEntries(resultFormat) {
@@ -85,7 +76,6 @@ function addResultTableEntries(resultFormat) {
     }
     var maxRow = Math.ceil(gcodeStatsCount / 1);
     var gcodeStatsTableContent = [Array(maxRow), Array(maxRow)];
-    //console.log(Array[maxRow])
     let row = 0;
     var col = 0;
     for (key in resultFormat) {

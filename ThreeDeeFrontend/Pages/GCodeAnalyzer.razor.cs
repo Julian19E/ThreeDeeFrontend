@@ -7,12 +7,16 @@ public partial class GCodeAnalyzer
 {
     [Inject]
     public IJSRuntime JsRuntime { get; set; }
+    
+    [Parameter] 
+    public string File { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JsRuntime.InvokeVoidAsync("onloadInit");
+            
+            await JsRuntime.InvokeVoidAsync("onloadInit", $"gcodefiles/{File}.txt");
         }
     }
 }

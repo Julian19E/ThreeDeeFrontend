@@ -10,7 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MudBlazor" Version="6.1.8" />
+      <PackageReference Include="MudBlazor" Version="6.2.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -44,6 +44,18 @@
     <ItemGroup>
       <ProjectReference Include="..\ThreeDeeApplication\ThreeDeeApplication.csproj" />
       <ProjectReference Include="..\ThreeDeeInfrastructure\ThreeDeeInfrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="wwwroot\gcodefiles\Banshee.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\gcodefiles\Bolt.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\gcodefiles\PrinterTest.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
