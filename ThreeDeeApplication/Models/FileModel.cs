@@ -14,6 +14,7 @@ public class FileModel
     public long Size { get; set; }
     public int Downloads { get; set; }
     public float AverageRating { get; set; }
+    public int Rating { get; set; } 
     public List<int> GCodeIds { get; set; } = new();
     public Filetype Filetype { get; set; }
 }
