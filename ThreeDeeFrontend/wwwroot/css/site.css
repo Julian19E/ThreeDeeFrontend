@@ -56,5 +56,28 @@ h1:focus {
 h1, h2, h3, h4, h5, h6, p{
     font-family: 'Segoe UI', 'Segoe UI Web', Arial, Verdana, sans-serif;
 }
+
+.statstable {
+    font-family: 'Segoe UI', 'Segoe UI Web', Arial, Verdana, sans-serif;
+    border-collapse: collapse;
+}
+
+.statstable td, .statstable th {
+    border: 1px solid #32333d;
+    padding: 4px;
+    background-color: #27272f;
+    color: #f1f1f1;
+}
+
+
+/*.customers tr:hover {
+    background-color: #ddd;
+}*/
+
+.statstable th {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: left;
+}
     
     

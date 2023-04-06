@@ -1,0 +1,32 @@
+@page "/analyzer/{file}"
+
+
+<MudContainer id="bodyDiv" MaxWidth="MaxWidth.Large">
+    <div>
+        <div class="panel-heading" align="right">
+            <div>
+                <span id="layerNumber"></span>
+            </div>
+        </div>
+        <div style="display: flex; height: 100%;">
+            <div style="width: 100px;">
+                <table id="speedLable">
+                </table>
+            </div>
+            <div id="renderCanvasContainer" style="width: 100%; max-width: 1000px; margin-left: 30px;">
+                <canvas id="renderCanvas"></canvas>
+            </div>
+            <div id="canvasVerticalSliderContainer" style="width: 150px;">
+                <div id="canvasVerticalSlider">
+                    <input style="rotate: 270deg; width: 300px; margin: 200px -200px 0 -100px" type="range" id="myRange">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 100px;" align="center">
+        <table class="statstable" style="max-width: 1000px; width: 100%;">
+            <tbody class="statstable" id="gcodeStats">
+            </tbody>
+        </table>
+    </div>
+</MudContainer>
