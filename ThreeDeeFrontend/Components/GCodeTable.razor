@@ -9,12 +9,11 @@
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>
-        <PropertyColumn Property="x => x.Downloads" />
-        <PropertyColumn Property="x => x.SuccessPercentage" />
-        <PropertyColumn Property="x => x.PrinterBrand" />
-        <PropertyColumn Property="x => x.PrinterModel" />
-        <PropertyColumn Property="x => x.XyzDimensions" Sortable="false" />
-        <PropertyColumn Property="x => x.Material"/>
+        <PropertyColumn Property="x => x.Author" />
+        <PropertyColumn Property="x => x.SuccessPercentage" Title="Success Rate"/>
+        <PropertyColumn Property="x => x.FilamentLengthUsed" Title="Filament used in m"/>
+        <PropertyColumn Property="x => x.PrintingTimeMinutes"  Title="Printing Time in min"/>
+        <!---<PropertyColumn Property="x => x.Material" Sortable="false"/>--->
     </Columns>
     <PagerContent>
         <MudDataGridPager T="GCodeSettingsModel" />
