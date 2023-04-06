@@ -16,11 +16,11 @@
 <MudSnackbarProvider/>
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudText
+        <MudButton
             Typo="Typo.h5"
-            Class="ml-3">
+            Class="ml-3" Href="/">
             Logo
-        </MudText>
+        </MudButton>
         <div class="d-flex justify-center flex-grow-1 gap-4">
             <DropDownMenu 
                 Label="Library" 
@@ -36,10 +36,6 @@
             @bind-Checked="@ThemeProviderService.IsDarkMode"
             Color="Color.Primary" T="bool" 
             Label="@(ThemeProviderService.IsDarkMode ? "DARK" : "LIGHT")"/>
-        <MudIconButton 
-            Icon="@Icons.Material.Filled.ManageAccounts" 
-            Color="Color.Inherit" 
-            Edge="Edge.End" />
     </MudAppBar>
     <MudMainContent>
         @Body
