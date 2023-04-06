@@ -25,11 +25,8 @@
             </CardHeaderContent>
             <CardHeaderActions>
                 <MudIconButton
-                    Icon="@Icons.Material.Filled.Share"
-                    Color="Color.Default"/>
-                <MudIconButton
                     Icon="@Icons.Material.Filled.ColorLens"
-                    Color="@(_isColorPickerOpen ? Color.Secondary : Color.Dark)"
+                    Color="@(_isColorPickerOpen ? Color.Secondary : Color.Info)"
                     OnClick="() => { _isColorPickerOpen = !_isColorPickerOpen; }">
                 </MudIconButton>
             </CardHeaderActions>
@@ -79,37 +76,48 @@
                     <GCodeTable />
                 </MudExpansionPanel>
                 <MudExpansionPanel
-                    Text="Kommentare">
+                    Text="Comments">
                 </MudExpansionPanel>
             </MudExpansionPanels>
         </MudCardContent>
         <MudCardActions Style="padding: 20px 40px 20px 40px;">
             <MudGrid>
                 <MudItem xs="12" sm="4">
-                    <MudButton
-                        Class="d-flex align-center justify-center"
-                        Style="width: 100%"
-                        Variant="Variant.Filled"
-                        Color="Color.Primary">
-                        Download
-                    </MudButton>
+                    <a href="@($"/assets/{_file.Name}.stl")" download="@($"{_file.Name}.stl")" target="_top">
+                        <MudButton
+                            Class="d-flex align-center justify-center"
+                            Style="width: 100%"
+                            Variant="Variant.Filled"
+                            Color="Color.Primary"
+                            StartIcon="@Icons.Material.Filled.Download">
+                            Download
+                        </MudButton>
+                    </a>
+                </MudItem>
+                <MudItem xs="12" sm="4">
+                    <MudFileUpload T="IReadOnlyList<IBrowserFile>" Accept=".stl" FilesChanged="UploadGCode">
+                        <ButtonTemplate>
+                            <MudButton
+                                HtmlTag="label"
+                                Class="d-flex align-center justify-center"
+                                Style="width: 100%"
+                                Variant="Variant.Filled"
+                                Color="Color.Primary"
+                                StartIcon="@Icons.Material.Filled.Upload"
+                                for="@context">
+                                Upload GCode
+                            </MudButton>
+                        </ButtonTemplate>
+                    </MudFileUpload>
                 </MudItem>
                 <MudItem xs="12" sm="4">
                     <MudButton
                         Class="d-flex align-center justify-center"
                         Style="width: 100%"
                         Variant="Variant.Filled"
-                        Color="Color.Primary">
-                        Upload GCode
-                    </MudButton>
-                </MudItem>
-                <MudItem xs="12" sm="4">
-                    <MudButton
-                        Class="d-flex align-center justify-center"
-                        Style="width: 100%"
-                        Variant="Variant.Filled"
-                        Color="Color.Primary">
-                        neuer Kommentar
+                        Color="Color.Primary"
+                        StartIcon="@Icons.Material.Filled.AddComment">
+                        new Comment
                     </MudButton>
                 </MudItem>
             </MudGrid>
@@ -117,3 +125,14 @@
     </MudCard>
 </MudContainer>
 
+@if (files != null)
+{
+    <MudList>
+        @foreach (var file in files)
+        {
+            <MudListItem Icon="@Icons.Material.Filled.AttachFile">
+                @file.Name <code>@file.Size bytes</code>
+            </MudListItem>
+        }
+    </MudList>
+}

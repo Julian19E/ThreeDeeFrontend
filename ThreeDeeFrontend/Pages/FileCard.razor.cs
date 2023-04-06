@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor.Utilities;
 using ThreeDeeApplication.Models;
 using ThreeDeeFrontend.Components;
@@ -40,5 +41,15 @@ public partial class FileCard
     {
         _color = color;
         await _modelRendererRef.ChangeColor(color.Value);
+    }
+    
+    IList<IBrowserFile> files = new List<IBrowserFile>();
+    private void UploadGCode(IReadOnlyList<IBrowserFile> files)
+    {
+        foreach (var file in files)
+        {
+            this.files.Add(file);
+        }
+        //TODO upload the files to the server
     }
 }
