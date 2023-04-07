@@ -23,6 +23,9 @@
             </div>
         </div>
     </div>
+    <a href="@($"/gcodefiles/{File}.txt")" download="@($"{File}.gcode")" >
+        <MudButton Size="@Size.Medium" Variant="Variant.Filled" FullWidth="true" StartIcon="@Icons.Material.Filled.Download" Color="@Color.Primary">Download</MudButton>
+    </a>
     <div class="row" style="margin-bottom: 100px;" align="center">
         <table class="statstable" style="max-width: 1000px; width: 100%;">
             <tbody class="statstable" id="gcodeStats">
