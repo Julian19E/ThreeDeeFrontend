@@ -1,4 +1,5 @@
 using ThreeDeeApplication.Models;
+using ThreeDeeInfrastructure.ResponseModels;
 
 namespace ThreeDeeInfrastructure.Services;
 
@@ -17,6 +18,7 @@ public class EndpointService : IEndpointService
     public string GetMappedUrl(Type responseModel)
     {
         if (ReferenceEquals(responseModel, typeof(FileModel))) return _serviceUrl + ResourceUrls.ModelsPublic;
+        if (ReferenceEquals(responseModel, typeof(FileModelPrivate))) return _serviceUrl + ResourceUrls.ModelsPrivate;
         return _serviceUrl;
     }
 }

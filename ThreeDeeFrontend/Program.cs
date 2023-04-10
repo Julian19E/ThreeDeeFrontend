@@ -11,6 +11,7 @@ using ThreeDeeApplication.Models;
 using ThreeDeeFrontend.Areas.Identity;
 using ThreeDeeFrontend.Data;
 using ThreeDeeFrontend.Services;
+using ThreeDeeInfrastructure.ResponseModels;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddMudServices();
 builder.Services.AddSingleton<IEndpointService, EndpointService>();
 builder.Services.AddScoped<IRepository<FileModel, FileModel>, Repository<FileModel, FileModel>>();
+builder.Services.AddScoped<IRepository<FileModelPrivate, FileModelPrivate>, Repository<FileModelPrivate, FileModelPrivate>>();
 builder.Services.AddScoped<TopMenuViewModel>();
 builder.Services.AddScoped<IJsInteropService<ModelRenderer>, JsInteropService<ModelRenderer>>();
 builder.Services.AddScoped<IThemeProviderService, ThemeProviderService>();

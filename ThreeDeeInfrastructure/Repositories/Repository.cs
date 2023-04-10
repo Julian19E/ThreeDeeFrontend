@@ -44,6 +44,20 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
             return new List<TResponse> {new() {IsResponseSuccess = false}};
         }
     }
+    
+    public async Task<IEnumerable<TResponse>> GetAll(string id)
+    {
+        try
+        {
+            var response = await HttpClient.GetFromJsonAsync<List<TResponse>>($"{Uri}/{id}", Options);
+            return response ?? Enumerable.Empty<TResponse>().ToList();
+        }
+        catch (Exception e) when (e is HttpRequestException or JsonException)
+        {
+            Debug.WriteLine(e);
+            return new List<TResponse> {new() {IsResponseSuccess = false}};
+        }
+    }
 
  
 
@@ -65,6 +79,7 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
         }
     }
 
+    
  
 
     public async Task<TResponse> Insert(TRequest requestModel)

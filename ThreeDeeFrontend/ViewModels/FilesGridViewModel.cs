@@ -3,6 +3,7 @@ using MudBlazor;
 using ThreeDeeApplication.Enums;
 using ThreeDeeApplication.Models;
 using ThreeDeeInfrastructure.Repositories;
+using ThreeDeeInfrastructure.ResponseModels;
 
 
 namespace ThreeDeeFrontend.ViewModels;
@@ -15,12 +16,13 @@ public class FilesGridViewModel : IFilesGridViewModel
     public Filetype FileAccessStatus { get; private set; }
     
     private readonly List<FileModel> _files = new();
-    private readonly IFileRepository _fileRepository;
     [Inject] public IRepository<FileModel, FileModel> FileRepository { get; set; } = default!;
+    [Inject] public IRepository<FileModelPrivate, FileModelPrivate> FileRepositoryPrivate { get; set; } = default!;
     
-    public FilesGridViewModel(IRepository<FileModel, FileModel> fileRepository)
+    public FilesGridViewModel(IRepository<FileModel, FileModel> fileRepository, IRepository<FileModelPrivate, FileModelPrivate> fileRepositoryPrivate)
     {
         FileRepository = fileRepository;
+        FileRepositoryPrivate = fileRepositoryPrivate;
         ChangeStatus(FileAccessStatus);
     }
 
@@ -28,8 +30,17 @@ public class FilesGridViewModel : IFilesGridViewModel
     {
         FileAccessStatus = newStatus;
         _files.Clear();
-        var test = await FileRepository.GetAll();
-        foreach (var file in await FileRepository.GetAll())
+        IEnumerable<FileModel> test = new List<FileModel>();
+        if (newStatus == Filetype.Public)
+        {
+            test = await FileRepository.GetAll();
+        }
+        else
+        {
+            test = await FileRepositoryPrivate.GetAll("tst"); //TODO Get Username
+        }
+        
+        foreach (var file in test)
         {
             _files.Add(file);
         }
