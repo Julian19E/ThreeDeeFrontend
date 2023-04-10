@@ -1,101 +1,64 @@
 @page "/"
 @inherits LayoutComponentBase
 
+
 <PageTitle>LandingPage</PageTitle>
 <MudThemeProvider/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 
-<MudContainer Class="mt-16">
-    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Pricing</MudText>
-    <MudText Align="Align.Center">Mit unseren Vorlagen Drucken Sie sofort 3D-Modelle direkt von unserer Plattform.</MudText>
-    <MudGrid Class="mt-8">
-        <MudItem xs="12" sm="6" md="4">
-            <MudCard Elevation="25" Class="rounded-lg pb-4">
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.h5" Align="Align.Center">Beginner</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <div class="d-flex justify-center">
-                        <MudText Typo="Typo.h3">$5</MudText>
-                        <MudText Typo="Typo.h5" Class="ml-1 mt-5" Color="Color.Secondary">/Monthly</MudText>
+<PageTitle>LandingPage</PageTitle>
+
+
+<MudCard>
+    <MudCardContent>
+        <div style="position: relative; display: flex; align-items: center;">
+            <div style="flex: 1;">
+                <div style="position: absolute; top: 38%; left: 22%; transform: translate(-50%, -50%);">
+                    <MudText Typo="Typo.h3" Align="Align.Left" GutterBottom="true" Style="@($"color:{Colors.Purple.Lighten5}; font-family: 'ayuthaya'; font-weight: bold")">3D Druck <br/> einfach <br/> gemacht</MudText>
+                    <MudText Typo="Typo.h6" Align="Align.Left" GutterBottom="true" Style="@($"color:{Colors.Pink.Lighten5};")">3D-Modelle inklusive geprüfter 
+                        <br/> Druckkonfigurationen als GCode. 
+                        <br/> Melde dich an und fange sofort 
+                        <br/> an zu drucken</MudText>
+                    <div style="margin-top: 20px;">
+                        <MudButton Disabled="@_processing" OnClick="ProcessSomething" Variant="Variant.Filled" Color="Color.Error" Style="font-size: 14px; padding: 12px 80px;">
+                            @if (_processing)
+                            {
+                                <MudProgressCircular Class="ms-n1" Indeterminate="true"/>
+                                <MudText Class="ms-2">Processing</MudText>
+                            }
+                            else
+                            {
+                                <MudText>MERH ERFAHREN</MudText>
+                            }
+                        </MudButton>
                     </div>
-                    <MudList Class="mx-auto mt-4" Style="width:300px;">
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            Unlimited something
-                        </MudListItem>
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            10 something
-                        </MudListItem>
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            No something
-                        </MudListItem>
-                    </MudList>
-                </MudCardContent>
-                <MudCardActions Class="d-flex justify-center">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width:50%;">Start Now</MudButton>
-                </MudCardActions>
-            </MudCard>
-        </MudItem>
-        <MudItem xs="12" sm="6" md="4">
-            <MudCard Elevation="25" Class="rounded-lg pb-4">
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.h5" Align="Align.Center">Starter</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <div class="d-flex justify-center">
-                        <MudText Typo="Typo.h3">$10</MudText>
-                        <MudText Typo="Typo.h5" Class="ml-1 mt-5" Color="Color.Secondary">/Monthly</MudText>
-                    </div>
-                    <MudList Class="mx-auto mt-4" Style="width:300px;">
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            Unlimited something
-                        </MudListItem>
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            10 something
-                        </MudListItem>
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            No something
-                        </MudListItem>
-                    </MudList>
-                </MudCardContent>
-                <MudCardActions Class="d-flex justify-center">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width:50%;">Start Now</MudButton>
-                </MudCardActions>
-            </MudCard>
-        </MudItem>
-        <MudItem xs="12" sm="12" md="4">
-            <MudCard Elevation="25" Class="rounded-lg pb-4">
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.h5" Align="Align.Center">Professional</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <div class="d-flex justify-center">
-                        <MudText Typo="Typo.h3">$15</MudText>
-                        <MudText Typo="Typo.h5" Class="ml-1 mt-5" Color="Color.Secondary">/Monthly</MudText>
-                    </div>
-                    <MudList Class="mx-auto mt-4" Style="width:300px;">
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            Unlimited something
-                        </MudListItem>
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            10 something
-                        </MudListItem>
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            No something
-                        </MudListItem>
-                    </MudList>
-                </MudCardContent>
-                <MudCardActions Class="d-flex justify-center">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width:50%;">Start Now</MudButton>
-                </MudCardActions>
-            </MudCard>
-        </MudItem>
-    </MudGrid>
-</MudContainer>
+                </div>
+            </div>
+            <div style="flex: 1;">
+                <img src="3d3.png" width="1420" height="800"  alt="Drucker" Elevation="25"; />
+            </div>
+        </div>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    private bool _processing = false;
+
+    async Task ProcessSomething()
+    {
+        _processing = true;
+        await Task.Delay(2000);
+        _processing = false;
+    }
+}
+   
+       
+         
+     
+
+
+
+
+
+
