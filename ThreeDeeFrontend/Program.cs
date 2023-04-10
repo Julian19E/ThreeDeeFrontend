@@ -7,6 +7,7 @@ using ThreeDeeInfrastructure.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
+using ThreeDeeApplication.Models;
 using ThreeDeeFrontend.Areas.Identity;
 using ThreeDeeFrontend.Data;
 using ThreeDeeFrontend.Services;
@@ -17,12 +18,16 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 builder.Services.AddMudServices();
+builder.Services.AddSingleton<IEndpointService, EndpointService>();
+builder.Services.AddScoped<IRepository<FileModel, FileModel>, Repository<FileModel, FileModel>>();
 builder.Services.AddScoped<TopMenuViewModel>();
 builder.Services.AddScoped<IJsInteropService<ModelRenderer>, JsInteropService<ModelRenderer>>();
 builder.Services.AddScoped<IThemeProviderService, ThemeProviderService>();
 builder.Services.AddScoped<IGCodeSettingsRepository, GCodeSettingsRepository>();
 builder.Services.AddScoped<IFileRepository>(sp => new FileRepository(sp.GetService<HttpClient>()!, sp.GetService<IConfiguration>()!["UsersEndpoint"]));
+
 builder.Services.AddScoped<IFilesGridViewModel, FilesGridViewModel>();
+
 
 var appSettingsFilePath = builder.Environment.EnvironmentName == "Production" ? "appsettings.json" : "appsettings.Development.json";
 

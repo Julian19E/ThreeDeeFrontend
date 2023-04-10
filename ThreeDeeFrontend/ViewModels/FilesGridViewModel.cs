@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using ThreeDeeApplication.Enums;
 using ThreeDeeApplication.Models;
 using ThreeDeeInfrastructure.Repositories;
+
 
 namespace ThreeDeeFrontend.ViewModels;
 
@@ -14,10 +16,11 @@ public class FilesGridViewModel : IFilesGridViewModel
     
     private readonly List<FileModel> _files = new();
     private readonly IFileRepository _fileRepository;
-
-    public FilesGridViewModel(IFileRepository fileRepository)
+    [Inject] public IRepository<FileModel, FileModel> FileRepository { get; set; } = default!;
+    
+    public FilesGridViewModel(IRepository<FileModel, FileModel> fileRepository)
     {
-        _fileRepository = fileRepository;
+        FileRepository = fileRepository;
         ChangeStatus(FileAccessStatus);
     }
 
@@ -25,7 +28,8 @@ public class FilesGridViewModel : IFilesGridViewModel
     {
         FileAccessStatus = newStatus;
         _files.Clear();
-        foreach (var file in _fileRepository.MockData.Where(file => file.Filetype == newStatus))
+        var test = await FileRepository.GetAll();
+        foreach (var file in await FileRepository.GetAll())
         {
             _files.Add(file);
         }
