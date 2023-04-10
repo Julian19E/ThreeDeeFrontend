@@ -33,4 +33,31 @@
     <data name="DropDownRequestFile" xml:space="preserve">
         <value>request new model</value>
     </data>
+    <data name="Shared_Main_PageTitle" xml:space="preserve">
+        <value>3D File Management System</value>
+    </data>
+    <data name="Shared_Main_DropDown_Library" xml:space="preserve">
+        <value>Library</value>
+    </data>
+    <data name="Shared_Main_DropDown_Files" xml:space="preserve">
+        <value>Files</value>
+    </data>
+    <data name="Shared_Main_DarkMode_Dark" xml:space="preserve">
+        <value>DARK</value>
+    </data>
+    <data name="Shared_Main_DarkMode_Light" xml:space="preserve">
+        <value>LIGHT</value>
+    </data>
+    <data name="Shared_Login_WelcomeText" xml:space="preserve">
+        <value>Hello</value>
+    </data>
+    <data name="Shared_Login_LogOut" xml:space="preserve">
+        <value>Log out</value>
+    </data>
+    <data name="Shared_Login_Register" xml:space="preserve">
+        <value>Register</value>
+    </data>
+    <data name="Shared_Login_LogIn" xml:space="preserve">
+        <value>Log in</value>
+    </data>
 </root>

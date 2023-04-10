@@ -8,6 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace ThreeDeeFrontend {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -98,6 +101,87 @@ namespace ThreeDeeFrontend {
         internal static string DropDownSharedFiles {
             get {
                 return ResourceManager.GetString("DropDownSharedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in.
+        /// </summary>
+        internal static string Shared_Login_LogIn {
+            get {
+                return ResourceManager.GetString("Shared_Login_LogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log out.
+        /// </summary>
+        internal static string Shared_Login_LogOut {
+            get {
+                return ResourceManager.GetString("Shared_Login_LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        internal static string Shared_Login_Register {
+            get {
+                return ResourceManager.GetString("Shared_Login_Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        internal static string Shared_Login_WelcomeText {
+            get {
+                return ResourceManager.GetString("Shared_Login_WelcomeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DARK.
+        /// </summary>
+        internal static string Shared_Main_DarkMode_Dark {
+            get {
+                return ResourceManager.GetString("Shared_Main_DarkMode_Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LIGHT.
+        /// </summary>
+        internal static string Shared_Main_DarkMode_Light {
+            get {
+                return ResourceManager.GetString("Shared_Main_DarkMode_Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        internal static string Shared_Main_DropDown_Files {
+            get {
+                return ResourceManager.GetString("Shared_Main_DropDown_Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library.
+        /// </summary>
+        internal static string Shared_Main_DropDown_Library {
+            get {
+                return ResourceManager.GetString("Shared_Main_DropDown_Library", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3D File Management System.
+        /// </summary>
+        internal static string Shared_Main_PageTitle {
+            get {
+                return ResourceManager.GetString("Shared_Main_PageTitle", resourceCulture);
             }
         }
     }

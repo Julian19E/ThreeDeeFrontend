@@ -33,4 +33,31 @@
     <data name="DropDownSharedFiles" xml:space="preserve">
         <value>geteilte Dateien</value>
     </data>
+    <data name="Shared_Main_PageTitle" xml:space="preserve">
+        <value>3D Dateien Management System</value>
+    </data>
+    <data name="Shared_Main_DropDown_Library" xml:space="preserve">
+        <value>Bibliothek</value>
+    </data>
+    <data name="Shared_Main_DropDown_Files" xml:space="preserve">
+        <value>Dateien</value>
+    </data>
+    <data name="Shared_Main_DarkMode_Dark" xml:space="preserve">
+        <value>DUNKEL</value>
+    </data>
+    <data name="Shared_Main_DarkMode_Light" xml:space="preserve">
+        <value>HELL</value>
+    </data>
+    <data name="Shared_Login_WelcomeText" xml:space="preserve">
+        <value>Hallo</value>
+    </data>
+    <data name="Shared_Login_LogOut" xml:space="preserve">
+        <value>Ausloggen</value>
+    </data>
+    <data name="Shared_Login_Register" xml:space="preserve">
+        <value>Registrieren</value>
+    </data>
+    <data name="Shared_Login_LogIn" xml:space="preserve">
+        <value>Einloggen</value>
+    </data>
 </root>

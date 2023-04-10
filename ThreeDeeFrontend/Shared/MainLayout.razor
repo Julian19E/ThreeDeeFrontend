@@ -7,7 +7,7 @@
 @using ThreeDeeInfrastructure.Services
 @inject TopMenuViewModel TopMenuViewModel
 
-<PageTitle>3D File Management System</PageTitle>
+<PageTitle>@Localization.Shared_Main_PageTitle</PageTitle>
 <MudThemeProvider 
     IsDarkMode="@ThemeProviderService.IsDarkMode"
     IsDarkModeChanged="async x => await SwitchTheme(x)" 
@@ -23,10 +23,10 @@
         </MudButton>
         <div class="d-flex justify-center flex-grow-1 gap-4">
             <DropDownMenu 
-                Label="Library" 
+                Label=@Localization.Shared_Main_DropDown_Library 
                 MenuItems="@TopMenuViewModel.LibraryItems"/>
             <DropDownMenu 
-                Label="Files" 
+                Label=@Localization.Shared_Main_DropDown_Files
                 MenuItems="@TopMenuViewModel.FilesItems"/>
         </div>
         <div style="padding-right: 50px;">
@@ -35,7 +35,7 @@
         <MudSwitch 
             @bind-Checked="@ThemeProviderService.IsDarkMode"
             Color="Color.Primary" T="bool" 
-            Label="@(ThemeProviderService.IsDarkMode ? "DARK" : "LIGHT")"/>
+            Label="@(ThemeProviderService.IsDarkMode ? @Localization.Shared_Main_DarkMode_Dark : @Localization.Shared_Main_DarkMode_Light)"/>
     </MudAppBar>
     <MudMainContent>
         @Body
