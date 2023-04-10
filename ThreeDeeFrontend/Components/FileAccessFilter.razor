@@ -18,12 +18,3 @@
         Icon="@Icons.Material.Filled.PublicOff">
     </MudIconButton>
 </MudTooltip>
-<MudTooltip Text="@Localization.Components_FilesAccessFilter_SharedFiles">
-    <MudIconButton
-        Color="Status == Filetype.Shared ? Color.Primary : Color.Default"
-        Variant="Variant.Filled"
-        OnClick="async () => { await OnStatusButtonClicked(Filetype.Shared); }"
-        Size="Size.Large"
-        Icon="@Icons.Material.Filled.FolderShared">
-    </MudIconButton>
-</MudTooltip>

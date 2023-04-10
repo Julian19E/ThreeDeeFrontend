@@ -20,8 +20,8 @@ public class FileRepository : IFileRepository
         new FileModel{Id = 3, Name = "Lamp", Author = "Gabriel", Filetype = Filetype.Public, Rating = 4},
         new FileModel{Id = 4, Name = "Nut", Author = "Julian", Filetype = Filetype.Public, Rating = 2},
         new FileModel{Id = 5, Name = "GiftBoxOuter", Author = "Julian", Filetype = Filetype.Private, Rating = 3},
-        new FileModel{Id = 6, Name = "Bolt", Author = "Hannes", Filetype = Filetype.Shared, Rating = 1},
-        new FileModel{Id = 7, Name = "GiftBoxInner", Author = "Hannes", Filetype = Filetype.Shared, Rating = 5}
+        new FileModel{Id = 6, Name = "Bolt", Author = "Hannes", Filetype = Filetype.Private, Rating = 1},
+        new FileModel{Id = 7, Name = "GiftBoxInner", Author = "Hannes", Filetype = Filetype.Private, Rating = 5}
     };
 
     public FileRepository(HttpClient httpClient, string serviceUrl)
