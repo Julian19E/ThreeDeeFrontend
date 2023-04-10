@@ -60,4 +60,43 @@
     <data name="Shared_Login_LogIn" xml:space="preserve">
         <value>Einloggen</value>
     </data>
+    <data name="Pages_Index_Title" xml:space="preserve">
+        <value>Dateien</value>
+    </data>
+    <data name="Pages_GCodeAnalyzer_Download" xml:space="preserve">
+        <value>Herunterladen</value>
+    </data>
+    <data name="Pages_FileCard_CreatedBy" xml:space="preserve">
+        <value>erstellt von:</value>
+    </data>
+    <data name="Pages_FileCard_on" xml:space="preserve">
+        <value>am</value>
+    </data>
+    <data name="Pages_FileCard_GCode" xml:space="preserve">
+        <value>GCode</value>
+    </data>
+    <data name="Pages_FileCard_Comments" xml:space="preserve">
+        <value>Kommentare</value>
+    </data>
+    <data name="Pages_FileCard_Download" xml:space="preserve">
+        <value>Herunterladen</value>
+    </data>
+    <data name="Pages_FileCard_UploadGCode" xml:space="preserve">
+        <value>GCode hochladen</value>
+    </data>
+    <data name="Pages_FileCard_newComment" xml:space="preserve">
+        <value>neues Kommentar</value>
+    </data>
+    <data name="Pages_Layout_ProdError" xml:space="preserve">
+        <value>Ein Fehler ist aufgetreten. Diese Anwendung reagiert möglicherweise nicht mehr, bis sie neu geladen wird.</value>
+    </data>
+    <data name="Pages_Layout_DevError" xml:space="preserve">
+        <value>Eine nicht behandelte Ausnahme aufgetreten. Einzelheiten finden Sie unter Browser-Entwicklungstools.</value>
+    </data>
+    <data name="Pages_Layout_Reload" xml:space="preserve">
+        <value>neu laden</value>
+    </data>
+    <data name="App_ErrorAddress" xml:space="preserve">
+        <value>Sorry, unter dieser Adresse gibt es nichts.</value>
+    </data>
 </root>

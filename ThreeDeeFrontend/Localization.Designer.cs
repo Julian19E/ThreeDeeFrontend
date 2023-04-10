@@ -60,6 +60,15 @@ namespace ThreeDeeFrontend {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, there&apos;s nothing at this address..
+        /// </summary>
+        internal static string App_ErrorAddress {
+            get {
+                return ResourceManager.GetString("App_ErrorAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add new file.
         /// </summary>
         internal static string DropDownAddFile {
@@ -101,6 +110,114 @@ namespace ThreeDeeFrontend {
         internal static string DropDownSharedFiles {
             get {
                 return ResourceManager.GetString("DropDownSharedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments.
+        /// </summary>
+        internal static string Pages_FileCard_Comments {
+            get {
+                return ResourceManager.GetString("Pages_FileCard_Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to created by:.
+        /// </summary>
+        internal static string Pages_FileCard_CreatedBy {
+            get {
+                return ResourceManager.GetString("Pages_FileCard_CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        internal static string Pages_FileCard_Download {
+            get {
+                return ResourceManager.GetString("Pages_FileCard_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GCode.
+        /// </summary>
+        internal static string Pages_FileCard_GCode {
+            get {
+                return ResourceManager.GetString("Pages_FileCard_GCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new Comment.
+        /// </summary>
+        internal static string Pages_FileCard_newComment {
+            get {
+                return ResourceManager.GetString("Pages_FileCard_newComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to on.
+        /// </summary>
+        internal static string Pages_FileCard_on {
+            get {
+                return ResourceManager.GetString("Pages_FileCard_on", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upload GCode.
+        /// </summary>
+        internal static string Pages_FileCard_UploadGCode {
+            get {
+                return ResourceManager.GetString("Pages_FileCard_UploadGCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        internal static string Pages_GCodeAnalyzer_Download {
+            get {
+                return ResourceManager.GetString("Pages_GCodeAnalyzer_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        internal static string Pages_Index_Title {
+            get {
+                return ResourceManager.GetString("Pages_Index_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unhandled exception has occurred. See browser dev tools for details..
+        /// </summary>
+        internal static string Pages_Layout_DevError {
+            get {
+                return ResourceManager.GetString("Pages_Layout_DevError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error has occurred. This application may no longer respond until reloaded..
+        /// </summary>
+        internal static string Pages_Layout_ProdError {
+            get {
+                return ResourceManager.GetString("Pages_Layout_ProdError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reload.
+        /// </summary>
+        internal static string Pages_Layout_Reload {
+            get {
+                return ResourceManager.GetString("Pages_Layout_Reload", resourceCulture);
             }
         }
         
