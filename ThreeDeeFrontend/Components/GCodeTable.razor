@@ -10,14 +10,14 @@
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>
-        <PropertyColumn Property="x => x.SuccessPercentage" Title="Success" Format="p2"/>
-        <PropertyColumn Property="x => x.FilamentLengthUsed" Title="Filament used in m"/>
-        <PropertyColumn Property="x => x.PrintingTimeMinutes"  Title="Printing Time in min"/>
-        <PropertyColumn Property="x => x.Author" />
+        <PropertyColumn Property="x => x.SuccessPercentage" Title="@Localization.Components_GCodeTable_Success" Format="p2"/>
+        <PropertyColumn Property="x => x.FilamentLengthUsed" Title="@Localization.Components_GCodeTable_FilamentLengthUsed"/>
+        <PropertyColumn Property="x => x.PrintingTimeMinutes" Title="@Localization.Components_GCodeTable_PrintingTime"/>
+        <PropertyColumn Property="x => x.Author" Title="@Localization.Components_GCodeTable_Author"/>
         <TemplateColumn CellClass="d-flex justify-start">
             <CellTemplate>
                 <MudStack Row>
-                    <MudButton OnClick="OnButtonClicked" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Details</MudButton>
+                    <MudButton OnClick="OnButtonClicked" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">@Localization.Components_GCodeTable_Details</MudButton>
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>

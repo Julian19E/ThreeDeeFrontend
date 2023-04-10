@@ -69,6 +69,87 @@ namespace ThreeDeeFrontend {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display Private Files.
+        /// </summary>
+        internal static string Components_FileAccessFilter_PrivateFiles {
+            get {
+                return ResourceManager.GetString("Components_FileAccessFilter_PrivateFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Public Files.
+        /// </summary>
+        internal static string Components_FileAccessFilter_PublicFiles {
+            get {
+                return ResourceManager.GetString("Components_FileAccessFilter_PublicFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Shared Files.
+        /// </summary>
+        internal static string Components_FilesAccessFilter_SharedFiles {
+            get {
+                return ResourceManager.GetString("Components_FilesAccessFilter_SharedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        internal static string Components_GCodeTable_Author {
+            get {
+                return ResourceManager.GetString("Components_GCodeTable_Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string Components_GCodeTable_Details {
+            get {
+                return ResourceManager.GetString("Components_GCodeTable_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filament used in m.
+        /// </summary>
+        internal static string Components_GCodeTable_FilamentLengthUsed {
+            get {
+                return ResourceManager.GetString("Components_GCodeTable_FilamentLengthUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Printing Time in min.
+        /// </summary>
+        internal static string Components_GCodeTable_PrintingTime {
+            get {
+                return ResourceManager.GetString("Components_GCodeTable_PrintingTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        internal static string Components_GCodeTable_Success {
+            get {
+                return ResourceManager.GetString("Components_GCodeTable_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search in available models.
+        /// </summary>
+        internal static string Components_SearchBar_Label {
+            get {
+                return ResourceManager.GetString("Components_SearchBar_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add new file.
         /// </summary>
         internal static string DropDownAddFile {

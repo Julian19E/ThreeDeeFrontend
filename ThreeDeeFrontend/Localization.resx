@@ -99,4 +99,31 @@
     <data name="App_ErrorAddress" xml:space="preserve">
         <value>Sorry, there's nothing at this address.</value>
     </data>
+    <data name="Components_SearchBar_Label" xml:space="preserve">
+        <value>Search in available models</value>
+    </data>
+    <data name="Components_GCodeTable_Success" xml:space="preserve">
+        <value>Success</value>
+    </data>
+    <data name="Components_GCodeTable_FilamentLengthUsed" xml:space="preserve">
+        <value>Filament used in m</value>
+    </data>
+    <data name="Components_GCodeTable_PrintingTime" xml:space="preserve">
+        <value>Printing Time in min</value>
+    </data>
+    <data name="Components_GCodeTable_Author" xml:space="preserve">
+        <value>Author</value>
+    </data>
+    <data name="Components_GCodeTable_Details" xml:space="preserve">
+        <value>Details</value>
+    </data>
+    <data name="Components_FileAccessFilter_PublicFiles" xml:space="preserve">
+        <value>Display Public Files</value>
+    </data>
+    <data name="Components_FileAccessFilter_PrivateFiles" xml:space="preserve">
+        <value>Display Private Files</value>
+    </data>
+    <data name="Components_FilesAccessFilter_SharedFiles" xml:space="preserve">
+        <value>Display Shared Files</value>
+    </data>
 </root>

@@ -99,4 +99,31 @@
     <data name="App_ErrorAddress" xml:space="preserve">
         <value>Sorry, unter dieser Adresse gibt es nichts.</value>
     </data>
+    <data name="Components_SearchBar_Label" xml:space="preserve">
+        <value>Suche in verfügbaren Modellen</value>
+    </data>
+    <data name="Components_GCodeTable_Success" xml:space="preserve">
+        <value>Erfolg</value>
+    </data>
+    <data name="Components_GCodeTable_FilamentLengthUsed" xml:space="preserve">
+        <value>Filament verwendet in m</value>
+    </data>
+    <data name="Components_GCodeTable_PrintingTime" xml:space="preserve">
+        <value>Druckzeit in min</value>
+    </data>
+    <data name="Components_GCodeTable_Author" xml:space="preserve">
+        <value>Autor/-in</value>
+    </data>
+    <data name="Components_GCodeTable_Details" xml:space="preserve">
+        <value>Details</value>
+    </data>
+    <data name="Components_FileAccessFilter_PublicFiles" xml:space="preserve">
+        <value>Öffentliche Dateien anzeigen</value>
+    </data>
+    <data name="Components_FileAccessFilter_PrivateFiles" xml:space="preserve">
+        <value>Private Dateien anzeigen</value>
+    </data>
+    <data name="Components_FilesAccessFilter_SharedFiles" xml:space="preserve">
+        <value>Freigegebene Dateien anzeigen</value>
+    </data>
 </root>

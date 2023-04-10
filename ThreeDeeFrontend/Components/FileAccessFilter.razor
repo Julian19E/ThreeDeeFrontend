@@ -1,6 +1,6 @@
 @using ThreeDeeApplication.Enums
 
-<MudTooltip Text="Display Public Files">
+<MudTooltip Text="@Localization.Components_FileAccessFilter_PublicFiles">
     <MudIconButton
         Color="Status == Filetype.Public ? Color.Primary : Color.Default"
         Variant="Variant.Filled"
@@ -9,7 +9,7 @@
         Icon="@Icons.Material.Filled.Public">
     </MudIconButton>
 </MudTooltip>
-<MudTooltip Text="Display Private Files">
+<MudTooltip Text="@Localization.Components_FileAccessFilter_PrivateFiles">
     <MudIconButton
         Color="Status == Filetype.Private ? Color.Primary : Color.Default"
         Variant="Variant.Filled"
@@ -18,7 +18,7 @@
         Icon="@Icons.Material.Filled.PublicOff">
     </MudIconButton>
 </MudTooltip>
-<MudTooltip Text="Display Shared Files">
+<MudTooltip Text="@Localization.Components_FilesAccessFilter_SharedFiles">
     <MudIconButton
         Color="Status == Filetype.Shared ? Color.Primary : Color.Default"
         Variant="Variant.Filled"
