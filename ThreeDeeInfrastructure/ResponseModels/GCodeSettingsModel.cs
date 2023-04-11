@@ -1,9 +1,10 @@
 ﻿using System;
 using ThreeDeeApplication.Enums;
+using ThreeDeeInfrastructure.ResponseModels;
 
 namespace ThreeDeeApplication.Models;
 
-public class GCodeSettingsModel
+public class GCodeSettingsModel : ResponseBase
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -13,6 +14,6 @@ public class GCodeSettingsModel
     public int FailedPrints { get; set; }
     public float FilamentLengthUsed { get; set; }
     public int PrintingTimeMinutes { get; set; }
-    public List<PrintModel> Prints { get; set; }
+    public List<int> Prints { get; set; }
     public double SuccessPercentage => Math.Round((double)SuccessfulPrints / (FailedPrints + SuccessfulPrints), 2);
 }

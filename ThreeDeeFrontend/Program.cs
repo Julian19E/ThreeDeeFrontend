@@ -23,6 +23,7 @@ builder.Services.AddSingleton<IEndpointService, EndpointService>();
 builder.Services.AddScoped<IRepository<FileModel, FileModel>, Repository<FileModel, FileModel>>();
 builder.Services.AddScoped<IRepository<FileModelPrivate, FileModelPrivate>, Repository<FileModelPrivate, FileModelPrivate>>();
 builder.Services.AddScoped<IRepository<FileModelComplete, FileModelComplete>, Repository<FileModelComplete, FileModelComplete>>();
+builder.Services.AddScoped<IRepository<GCodeSettingsModel, GCodeSettingsModel>, Repository<GCodeSettingsModel, GCodeSettingsModel>>();
 builder.Services.AddScoped<TopMenuViewModel>();
 builder.Services.AddScoped<IJsInteropService<ModelRenderer>, JsInteropService<ModelRenderer>>();
 builder.Services.AddScoped<IThemeProviderService, ThemeProviderService>();
