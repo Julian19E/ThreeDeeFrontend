@@ -19,6 +19,7 @@ public class EndpointService : IEndpointService
     {
         if (ReferenceEquals(responseModel, typeof(FileModel))) return _serviceUrl + ResourceUrls.ModelsPublic;
         if (ReferenceEquals(responseModel, typeof(FileModelPrivate))) return _serviceUrl + ResourceUrls.ModelsPrivate;
+        if (ReferenceEquals(responseModel, typeof(FileModelComplete))) return _serviceUrl + ResourceUrls.Model;
         return _serviceUrl;
     }
 }

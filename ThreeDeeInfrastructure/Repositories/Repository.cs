@@ -61,12 +61,11 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
 
  
 
-    public async Task<TResponse> Get(int id, Dictionary<string, string>? queries = default)
+    public async Task<TResponse> Get(int id)
     {
         try
         {
-            var query = ExtractQuery(queries);
-            var response = await HttpClient.GetFromJsonAsync<TResponse>($"{Uri}/{id}{query}", Options);
+            var response = await HttpClient.GetFromJsonAsync<TResponse>($"{Uri}/{id}", Options);
             return response ?? new TResponse();
         }
         catch (Exception e) when (e is HttpRequestException or JsonException)
