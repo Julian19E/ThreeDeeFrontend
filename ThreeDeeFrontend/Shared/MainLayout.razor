@@ -7,7 +7,7 @@
 @using ThreeDeeInfrastructure.Services
 @inject TopMenuViewModel TopMenuViewModel
 
-<PageTitle>@Localization.Shared_Main_PageTitle</PageTitle>
+<PageTitle>@Localization.SharedMainPageTitle</PageTitle>
 <MudThemeProvider 
     IsDarkMode="@ThemeProviderService.IsDarkMode"
     IsDarkModeChanged="async x => await SwitchTheme(x)" 
@@ -29,7 +29,7 @@
         <MudSwitch 
             @bind-Checked="@ThemeProviderService.IsDarkMode"
             Color="Color.Primary" T="bool" 
-            Label="@(ThemeProviderService.IsDarkMode ? @Localization.Shared_Main_DarkMode_Dark : @Localization.Shared_Main_DarkMode_Light)"/>
+            Label="@(ThemeProviderService.IsDarkMode ? @Localization.SharedMainDarkModeDark : @Localization.SharedMainDarkModeLight)"/>
     </MudAppBar>
     <MudMainContent>
         @Body

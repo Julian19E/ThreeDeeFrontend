@@ -1,12 +1,12 @@
 <AuthorizeView>
     <Authorized>
-        <a>@Localization.Shared_Login_WelcomeText, @context.User.Identity?.Name!</a>
+        <a>@Localization.SharedLoginWelcomeText, @context.User.Identity?.Name!</a>
         <form method="post" action="Identity/Account/Logout">
-            <button type="submit" class="nav-link btn btn-link">@Localization.Shared_Login_LogOut</button>
+            <button type="submit" class="nav-link btn btn-link">@Localization.SharedLoginLogOut</button>
         </form>
     </Authorized>
     <NotAuthorized>
-        <a href="Identity/Account/Register">@Localization.Shared_Login_Register</a>
-        <a href="Identity/Account/Login">@Localization.Shared_Login_LogIn</a>
+        <a href="Identity/Account/Register">@Localization.SharedLoginRegister</a>
+        <a href="Identity/Account/Login">@Localization.SharedLoginLogIn</a>
     </NotAuthorized>
 </AuthorizeView>
