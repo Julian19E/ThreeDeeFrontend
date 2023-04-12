@@ -66,14 +66,14 @@
                     <MudRating
                         Class="mud-width-full py-4 d-flex align-center justify-end"
                         ReadOnly="true"
-                        SelectedValue="@_file.Rating"/>
+                        SelectedValue="@Convert.ToInt32(_file.Rating)"/>
                 </MudItem>
             </MudGrid>
             <MudExpansionPanels
                 MultiExpansion="true">
                 <MudExpansionPanel
                     Text="@Localization.PagesFileCardGCode">
-                    <GCodeTable />
+                    <GCodeTable Id="@_file.Id"/>
                 </MudExpansionPanel>
                 <MudExpansionPanel
                     Text="@Localization.PagesFileCardComments">

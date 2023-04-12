@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using ThreeDeeApplication.Models;
 using ThreeDeeInfrastructure.Repositories;
 
 namespace ThreeDeeFrontend.Components;
@@ -6,15 +7,29 @@ namespace ThreeDeeFrontend.Components;
 public partial class GCodeTable
 {
     [Inject]
-    private IGCodeSettingsRepository GCodeSettingsRepository { get; set; }
+    private IRepository<GCodeSettingsModel, GCodeSettingsModel> GCodeSettingsRepository { get; set; }
     
     [Inject]
     private NavigationManager NavigationManager { get; set; }
 
-    private void OnButtonClicked()
+    [Parameter]
+    public int Id { get; set; }
+    
+    private IEnumerable<GCodeSettingsModel> _gCodes = new List<GCodeSettingsModel>();
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        int random = new Random().Next(0, 3);
-        string[] fileNames = {"Banshee", "Bolt", "PrinterTest"};
-        NavigationManager.NavigateTo($"/analyzer/{fileNames[random]}");
+        if (firstRender)
+        {
+            _gCodes = await GCodeSettingsRepository.GetAll(Id.ToString());
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+
+    private void OnButtonClicked(string fileName)
+    {
+        NavigationManager.NavigateTo($"/analyzer/{fileName}");
     }
 }
