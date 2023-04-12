@@ -62,90 +62,90 @@ namespace ThreeDeeFrontend {
         /// <summary>
         ///   Looks up a localized string similar to Sorry, unter dieser Adresse gibt es nichts..
         /// </summary>
-        internal static string App_ErrorAddress {
+        internal static string AppErrorAddress {
             get {
-                return ResourceManager.GetString("App_ErrorAddress", resourceCulture);
+                return ResourceManager.GetString("AppErrorAddress", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Private Dateien anzeigen.
         /// </summary>
-        internal static string Components_FileAccessFilter_PrivateFiles {
+        internal static string ComponentsFileAccessFilterPrivateFiles {
             get {
-                return ResourceManager.GetString("Components_FileAccessFilter_PrivateFiles", resourceCulture);
+                return ResourceManager.GetString("ComponentsFileAccessFilterPrivateFiles", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Öffentliche Dateien anzeigen.
         /// </summary>
-        internal static string Components_FileAccessFilter_PublicFiles {
+        internal static string ComponentsFileAccessFilterPublicFiles {
             get {
-                return ResourceManager.GetString("Components_FileAccessFilter_PublicFiles", resourceCulture);
+                return ResourceManager.GetString("ComponentsFileAccessFilterPublicFiles", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Freigegebene Dateien anzeigen.
         /// </summary>
-        internal static string Components_FilesAccessFilter_SharedFiles {
+        internal static string ComponentsFilesAccessFilterSharedFiles {
             get {
-                return ResourceManager.GetString("Components_FilesAccessFilter_SharedFiles", resourceCulture);
+                return ResourceManager.GetString("ComponentsFilesAccessFilterSharedFiles", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Autor/-in.
         /// </summary>
-        internal static string Components_GCodeTable_Author {
+        internal static string ComponentsGCodeTableAuthor {
             get {
-                return ResourceManager.GetString("Components_GCodeTable_Author", resourceCulture);
+                return ResourceManager.GetString("ComponentsGCodeTableAuthor", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
-        internal static string Components_GCodeTable_Details {
+        internal static string ComponentsGCodeTableDetails {
             get {
-                return ResourceManager.GetString("Components_GCodeTable_Details", resourceCulture);
+                return ResourceManager.GetString("ComponentsGCodeTableDetails", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Filament verwendet in m.
         /// </summary>
-        internal static string Components_GCodeTable_FilamentLengthUsed {
+        internal static string ComponentsGCodeTableFilamentLengthUsed {
             get {
-                return ResourceManager.GetString("Components_GCodeTable_FilamentLengthUsed", resourceCulture);
+                return ResourceManager.GetString("ComponentsGCodeTableFilamentLengthUsed", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Druckzeit in min.
         /// </summary>
-        internal static string Components_GCodeTable_PrintingTime {
+        internal static string ComponentsGCodeTablePrintingTime {
             get {
-                return ResourceManager.GetString("Components_GCodeTable_PrintingTime", resourceCulture);
+                return ResourceManager.GetString("ComponentsGCodeTablePrintingTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Erfolg.
         /// </summary>
-        internal static string Components_GCodeTable_Success {
+        internal static string ComponentsGCodeTableSuccess {
             get {
-                return ResourceManager.GetString("Components_GCodeTable_Success", resourceCulture);
+                return ResourceManager.GetString("ComponentsGCodeTableSuccess", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Suche in verfügbaren Modellen.
         /// </summary>
-        internal static string Components_SearchBar_Label {
+        internal static string ComponentsSearchBarLabel {
             get {
-                return ResourceManager.GetString("Components_SearchBar_Label", resourceCulture);
+                return ResourceManager.GetString("ComponentsSearchBarLabel", resourceCulture);
             }
         }
         
@@ -197,189 +197,189 @@ namespace ThreeDeeFrontend {
         /// <summary>
         ///   Looks up a localized string similar to Kommentare.
         /// </summary>
-        internal static string Pages_FileCard_Comments {
+        internal static string PagesFileCardComments {
             get {
-                return ResourceManager.GetString("Pages_FileCard_Comments", resourceCulture);
+                return ResourceManager.GetString("PagesFileCardComments", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to erstellt von:.
         /// </summary>
-        internal static string Pages_FileCard_CreatedBy {
+        internal static string PagesFileCardCreatedBy {
             get {
-                return ResourceManager.GetString("Pages_FileCard_CreatedBy", resourceCulture);
+                return ResourceManager.GetString("PagesFileCardCreatedBy", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Herunterladen.
         /// </summary>
-        internal static string Pages_FileCard_Download {
+        internal static string PagesFileCardDownload {
             get {
-                return ResourceManager.GetString("Pages_FileCard_Download", resourceCulture);
+                return ResourceManager.GetString("PagesFileCardDownload", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to GCode.
         /// </summary>
-        internal static string Pages_FileCard_GCode {
+        internal static string PagesFileCardGCode {
             get {
-                return ResourceManager.GetString("Pages_FileCard_GCode", resourceCulture);
+                return ResourceManager.GetString("PagesFileCardGCode", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to neues Kommentar.
         /// </summary>
-        internal static string Pages_FileCard_newComment {
+        internal static string PagesFileCardNewComment {
             get {
-                return ResourceManager.GetString("Pages_FileCard_newComment", resourceCulture);
+                return ResourceManager.GetString("PagesFileCardNewComment", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to am.
         /// </summary>
-        internal static string Pages_FileCard_on {
+        internal static string PagesFileCardOn {
             get {
-                return ResourceManager.GetString("Pages_FileCard_on", resourceCulture);
+                return ResourceManager.GetString("PagesFileCardOn", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to GCode hochladen.
         /// </summary>
-        internal static string Pages_FileCard_UploadGCode {
+        internal static string PagesFileCardUploadGCode {
             get {
-                return ResourceManager.GetString("Pages_FileCard_UploadGCode", resourceCulture);
+                return ResourceManager.GetString("PagesFileCardUploadGCode", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Herunterladen.
         /// </summary>
-        internal static string Pages_GCodeAnalyzer_Download {
+        internal static string PagesGCodeAnalyzerDownload {
             get {
-                return ResourceManager.GetString("Pages_GCodeAnalyzer_Download", resourceCulture);
+                return ResourceManager.GetString("PagesGCodeAnalyzerDownload", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Dateien.
         /// </summary>
-        internal static string Pages_Index_Title {
+        internal static string PagesIndexTitle {
             get {
-                return ResourceManager.GetString("Pages_Index_Title", resourceCulture);
+                return ResourceManager.GetString("PagesIndexTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Eine nicht behandelte Ausnahme aufgetreten. Einzelheiten finden Sie unter Browser-Entwicklungstools..
         /// </summary>
-        internal static string Pages_Layout_DevError {
+        internal static string PagesLayoutDevError {
             get {
-                return ResourceManager.GetString("Pages_Layout_DevError", resourceCulture);
+                return ResourceManager.GetString("PagesLayoutDevError", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ein Fehler ist aufgetreten. Diese Anwendung reagiert möglicherweise nicht mehr, bis sie neu geladen wird..
         /// </summary>
-        internal static string Pages_Layout_ProdError {
+        internal static string PagesLayoutProdError {
             get {
-                return ResourceManager.GetString("Pages_Layout_ProdError", resourceCulture);
+                return ResourceManager.GetString("PagesLayoutProdError", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to neu laden.
         /// </summary>
-        internal static string Pages_Layout_Reload {
+        internal static string PagesLayoutReload {
             get {
-                return ResourceManager.GetString("Pages_Layout_Reload", resourceCulture);
+                return ResourceManager.GetString("PagesLayoutReload", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Einloggen.
         /// </summary>
-        internal static string Shared_Login_LogIn {
+        internal static string SharedLoginLogIn {
             get {
-                return ResourceManager.GetString("Shared_Login_LogIn", resourceCulture);
+                return ResourceManager.GetString("SharedLoginLogIn", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ausloggen.
         /// </summary>
-        internal static string Shared_Login_LogOut {
+        internal static string SharedLoginLogOut {
             get {
-                return ResourceManager.GetString("Shared_Login_LogOut", resourceCulture);
+                return ResourceManager.GetString("SharedLoginLogOut", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Registrieren.
         /// </summary>
-        internal static string Shared_Login_Register {
+        internal static string SharedLoginRegister {
             get {
-                return ResourceManager.GetString("Shared_Login_Register", resourceCulture);
+                return ResourceManager.GetString("SharedLoginRegister", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Hallo.
         /// </summary>
-        internal static string Shared_Login_WelcomeText {
+        internal static string SharedLoginWelcomeText {
             get {
-                return ResourceManager.GetString("Shared_Login_WelcomeText", resourceCulture);
+                return ResourceManager.GetString("SharedLoginWelcomeText", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to DUNKEL.
         /// </summary>
-        internal static string Shared_Main_DarkMode_Dark {
+        internal static string SharedMainDarkModeDark {
             get {
-                return ResourceManager.GetString("Shared_Main_DarkMode_Dark", resourceCulture);
+                return ResourceManager.GetString("SharedMainDarkModeDark", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to HELL.
         /// </summary>
-        internal static string Shared_Main_DarkMode_Light {
+        internal static string SharedMainDarkModeLight {
             get {
-                return ResourceManager.GetString("Shared_Main_DarkMode_Light", resourceCulture);
+                return ResourceManager.GetString("SharedMainDarkModeLight", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Dateien.
         /// </summary>
-        internal static string Shared_Main_DropDown_Files {
+        internal static string SharedMainDropDownFiles {
             get {
-                return ResourceManager.GetString("Shared_Main_DropDown_Files", resourceCulture);
+                return ResourceManager.GetString("SharedMainDropDownFiles", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Bibliothek.
         /// </summary>
-        internal static string Shared_Main_DropDown_Library {
+        internal static string SharedMainDropDownLibrary {
             get {
-                return ResourceManager.GetString("Shared_Main_DropDown_Library", resourceCulture);
+                return ResourceManager.GetString("SharedMainDropDownLibrary", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 3D Dateien Management System.
         /// </summary>
-        internal static string Shared_Main_PageTitle {
+        internal static string SharedMainPageTitle {
             get {
-                return ResourceManager.GetString("Shared_Main_PageTitle", resourceCulture);
+                return ResourceManager.GetString("SharedMainPageTitle", resourceCulture);
             }
         }
     }

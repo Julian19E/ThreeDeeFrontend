@@ -18,12 +18,12 @@
         @RenderBody()
         <div id="blazor-error-ui">
             <environment include="Staging,Production">
-                @Localization.Pages_Layout_ProdError
+                @Localization.PagesLayoutProdError
             </environment>
             <environment include="Development">
-                @Localization.Pages_Layout_DevError
+                @Localization.PagesLayoutDevError
             </environment>
-            <a href="" class="reload">@Localization.Pages_Layout_Reload</a>
+            <a href="" class="reload">@Localization.PagesLayoutReload</a>
             <a class="dismiss">🗙</a>
         </div>
         <script src="_framework/blazor.server.js"></script>

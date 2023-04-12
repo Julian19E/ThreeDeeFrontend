@@ -59,7 +59,7 @@
             <MudGrid>
                 <MudItem xs="12" sm="6">
                     <MudText Class="mud-width-full py-4 d-flex align-center justify-start">
-                        @Localization.Pages_FileCard_CreatedBy @_file.Author @Localization.Pages_FileCard_on @_file.Created.ToString("d.M.yyyy")
+                        @Localization.PagesFileCardCreatedBy @_file.Author @Localization.PagesFileCardOn @_file.Created.ToString("d.M.yyyy")
                     </MudText>
                 </MudItem>
                 <MudItem xs="12" sm="6">
@@ -72,11 +72,11 @@
             <MudExpansionPanels
                 MultiExpansion="true">
                 <MudExpansionPanel
-                    Text="@Localization.Pages_FileCard_GCode">
+                    Text="@Localization.PagesFileCardGCode">
                     <GCodeTable Id="@_file.Id"/>
                 </MudExpansionPanel>
                 <MudExpansionPanel
-                    Text="@Localization.Pages_FileCard_Comments">
+                    Text="@Localization.PagesFileCardComments">
                 </MudExpansionPanel>
             </MudExpansionPanels>
         </MudCardContent>
@@ -90,7 +90,7 @@
                             Variant="Variant.Filled"
                             Color="Color.Primary"
                             StartIcon="@Icons.Material.Filled.Download">
-                            @Localization.Pages_FileCard_Download
+                            @Localization.PagesFileCardDownload
                         </MudButton>
                     </a>
                 </MudItem>
@@ -105,7 +105,7 @@
                                 Color="Color.Primary"
                                 StartIcon="@Icons.Material.Filled.Upload"
                                 for="@context">
-                                @Localization.Pages_FileCard_UploadGCode
+                                @Localization.PagesFileCardUploadGCode
                             </MudButton>
                         </ButtonTemplate>
                     </MudFileUpload>
@@ -117,7 +117,7 @@
                         Variant="Variant.Filled"
                         Color="Color.Primary"
                         StartIcon="@Icons.Material.Filled.AddComment">
-                        @Localization.Pages_FileCard_newComment
+                        @Localization.PagesFileCardNewComment
                     </MudButton>
                 </MudItem>
             </MudGrid>
@@ -125,14 +125,11 @@
     </MudCard>
 </MudContainer>
 
-@if (files != null)
-{
-    <MudList>
-        @foreach (var file in files)
-        {
-            <MudListItem Icon="@Icons.Material.Filled.AttachFile">
-                @file.Name <code>@file.Size bytes</code>
-            </MudListItem>
-        }
-    </MudList>
-}
+<MudList>
+    @foreach (var file in _files)
+    {
+        <MudListItem Icon="@Icons.Material.Filled.AttachFile">
+            @file.Name <code>@file.Size bytes</code>
+        </MudListItem>
+    }
+</MudList>
