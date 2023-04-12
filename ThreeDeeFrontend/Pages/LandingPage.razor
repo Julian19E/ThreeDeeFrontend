@@ -1,50 +1,53 @@
 @page "/"
 @inherits LayoutComponentBase
 
-<link rel="stylesheet" href="https://de.maisfontes.com/ayuthaya.schriftart">
+@*<link rel="stylesheet" href="https://de.maisfontes.com/ayuthaya.schriftart">*@
 
 <PageTitle>LandingPage</PageTitle>
-<MudThemeProvider/>
-<MudDialogProvider/>
-<MudSnackbarProvider/>
+
 
 
 
 <PageTitle>LandingPage</PageTitle>
 
+@*<style>
+    /* Importieren Sie die Schriftdatei */
+    @font-face {
+        font-family: 'ayuthaya';
+        src: url('https://fonts.googleapis.com/css2?family=Ayuthaya&display=swap');
+    }
+</style>*@
 
-<MudCard>
-    <MudCardContent>
-        <div style="position: relative; display: flex; align-items: center;">
-            <div style="flex: 1;">
-                <div style="position: absolute; top: 38%; left: 22%; transform: translate(-50%, -50%);">
-                    <MudText Typo="Typo.h3" Align="Align.Left" GutterBottom="true" Style="@($"color:{Colors.Grey.Lighten5}; font-family: ayuthaya; font-weight: bold")">3D Druck <br/> einfach <br/> gemacht</MudText>
-                    <MudText Typo="Typo.h6" Align="Align.Left" GutterBottom="true" Style="@($"color:{Colors.Grey.Lighten5};")">3D-Modelle inklusive geprüfter 
-                        <br/> Druckkonfigurationen als GCode. 
-                        <br/> Melde dich an und fange sofort 
-                        <br/> an zu drucken</MudText>
-                    <div style="margin-top: 20px;">
-                        <MudButton Disabled="@_processing" OnClick="ProcessSomething" Variant="Variant.Filled" Color="Color.Error" Style="font-size: 14px; padding: 12px 80px;">
-                            @if (_processing)
-                            {
-                                <MudProgressCircular Class="ms-n1" Indeterminate="true"/>
-                                <MudText Class="ms-2">Processing</MudText>
-                            }
-                            else
-                            {
-                                <MudText>MERH ERFAHREN</MudText>
-                            }
-                        </MudButton>
-                    </div>
-                </div>
-            </div>
-            <div style="flex: 1;">
-                <img src="3d3.png" width="1420" height="800"  alt="Drucker" Elevation="25"; />
+
+<div style="position: relative; display: flex; align-items: center;" class="page-background-class">
+    
+
+    <div style="flex: 1;">
+        <div style="position: absolute; top: 38%; left: 22%; transform: translate(-50%, -50%);">
+            <MudText Typo="Typo.h3" Align="Align.Left" GutterBottom="true" Style="@($"color:{Colors.Grey.Lighten5};")">3D Druck <br/> einfach <br/> gemacht</MudText>
+            <MudText Typo="Typo.h6" Align="Align.Left" GutterBottom="true" Style="@($"color:{Colors.Grey.Lighten5};")">3D-Modelle inklusive geprüfter
+                <br/> Druckkonfigurationen als GCode.
+                <br/> Melde dich an und fange sofort
+                <br/> an zu drucken</MudText>
+            <div style="margin-top: 20px;">
+                <MudButton Disabled="@_processing" OnClick="ProcessSomething" Variant="Variant.Filled" Color="Color.Error" Style="font-size: 18px; padding: 12px 80px;">
+                    @if (_processing)
+                    {
+                        <MudProgressCircular Class="ms-n1" Indeterminate="true"/>
+                        <MudText Class="ms-2">Processing</MudText>
+                    }
+                    else
+                    {
+                        <MudText>MERH ERFAHREN</MudText>
+                    }
+                </MudButton>
             </div>
         </div>
-    </MudCardContent>
-</MudCard>
-
+    </div>
+    @*  <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+                <img src="pictures/background.png" width="1920" height="1080"  alt="printer" Elevation="25"; />
+            </div>*@
+</div>
 @code {
     private bool _processing = false;
 
@@ -56,7 +59,7 @@
     }
 }
    
-       https://de.maisfontes.com/ayuthaya.schriftart
+     
          
      
 
