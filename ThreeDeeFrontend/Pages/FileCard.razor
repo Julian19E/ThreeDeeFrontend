@@ -25,11 +25,8 @@
             </CardHeaderContent>
             <CardHeaderActions>
                 <MudIconButton
-                    Icon="@Icons.Material.Filled.Share"
-                    Color="Color.Default"/>
-                <MudIconButton
                     Icon="@Icons.Material.Filled.ColorLens"
-                    Color="@(_isColorPickerOpen ? Color.Secondary : Color.Dark)"
+                    Color="@(_isColorPickerOpen ? Color.Secondary : Color.Info)"
                     OnClick="() => { _isColorPickerOpen = !_isColorPickerOpen; }">
                 </MudIconButton>
             </CardHeaderActions>
@@ -62,58 +59,65 @@
             <MudGrid>
                 <MudItem xs="12" sm="6">
                     <MudText Class="mud-width-full py-4 d-flex align-center justify-start">
-                        Creator: @_file.Author
+                        @Localization.PagesFileCardCreatedBy @_file.Author @Localization.PagesFileCardOn @_file.Created.ToString("d.M.yyyy")
                     </MudText>
                 </MudItem>
                 <MudItem xs="12" sm="6">
                     <MudRating
                         Class="mud-width-full py-4 d-flex align-center justify-end"
                         ReadOnly="true"
-                        SelectedValue="@_random.Next(1, 6)"/>
+                        SelectedValue="@_file.Rating"/>
                 </MudItem>
             </MudGrid>
             <MudExpansionPanels
                 MultiExpansion="true">
                 <MudExpansionPanel
-                    Text="Modellhistorie">
-                    <FileHistoryTimeline/>
-                </MudExpansionPanel>
-                <MudExpansionPanel
-                    Text="GCode">
+                    Text="@Localization.PagesFileCardGCode">
                     <GCodeTable />
                 </MudExpansionPanel>
                 <MudExpansionPanel
-                    Text="Kommentare">
+                    Text="@Localization.PagesFileCardComments">
                 </MudExpansionPanel>
             </MudExpansionPanels>
         </MudCardContent>
         <MudCardActions Style="padding: 20px 40px 20px 40px;">
             <MudGrid>
                 <MudItem xs="12" sm="4">
-                    <MudButton
-                        Class="d-flex align-center justify-center"
-                        Style="width: 100%"
-                        Variant="Variant.Filled"
-                        Color="Color.Primary">
-                        Download
-                    </MudButton>
+                    <a href="@($"/assets/{_file.Name}.stl")" download="@($"{_file.Name}.stl")" target="_top">
+                        <MudButton
+                            Class="d-flex align-center justify-center"
+                            Style="width: 100%"
+                            Variant="Variant.Filled"
+                            Color="Color.Primary"
+                            StartIcon="@Icons.Material.Filled.Download">
+                            @Localization.PagesFileCardDownload
+                        </MudButton>
+                    </a>
+                </MudItem>
+                <MudItem xs="12" sm="4">
+                    <MudFileUpload T="IReadOnlyList<IBrowserFile>" Accept=".stl" FilesChanged="UploadGCode">
+                        <ButtonTemplate>
+                            <MudButton
+                                HtmlTag="label"
+                                Class="d-flex align-center justify-center"
+                                Style="width: 100%"
+                                Variant="Variant.Filled"
+                                Color="Color.Primary"
+                                StartIcon="@Icons.Material.Filled.Upload"
+                                for="@context">
+                                @Localization.PagesFileCardUploadGCode
+                            </MudButton>
+                        </ButtonTemplate>
+                    </MudFileUpload>
                 </MudItem>
                 <MudItem xs="12" sm="4">
                     <MudButton
                         Class="d-flex align-center justify-center"
                         Style="width: 100%"
                         Variant="Variant.Filled"
-                        Color="Color.Primary">
-                        Upload GCode
-                    </MudButton>
-                </MudItem>
-                <MudItem xs="12" sm="4">
-                    <MudButton
-                        Class="d-flex align-center justify-center"
-                        Style="width: 100%"
-                        Variant="Variant.Filled"
-                        Color="Color.Primary">
-                        neuer Kommentar
+                        Color="Color.Primary"
+                        StartIcon="@Icons.Material.Filled.AddComment">
+                        @Localization.PagesFileCardNewComment
                     </MudButton>
                 </MudItem>
             </MudGrid>
@@ -121,3 +125,11 @@
     </MudCard>
 </MudContainer>
 
+<MudList>
+    @foreach (var file in _files)
+    {
+        <MudListItem Icon="@Icons.Material.Filled.AttachFile">
+            @file.Name <code>@file.Size bytes</code>
+        </MudListItem>
+    }
+</MudList>
