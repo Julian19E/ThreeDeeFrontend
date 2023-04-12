@@ -16,13 +16,11 @@ public class FilesGridViewModel : IFilesGridViewModel
     public Filetype FileAccessStatus { get; private set; }
     
     private readonly List<FileModel> _files = new();
-    [Inject] public IRepository<FileModel, FileModel> FileRepository { get; set; } = default!;
-    [Inject] public IRepository<FileModelPrivate, FileModelPrivate> FileRepositoryPrivate { get; set; } = default!;
+    private IRepository<FileModel, FileModel> FileRepository { get; } 
     
-    public FilesGridViewModel(IRepository<FileModel, FileModel> fileRepository, IRepository<FileModelPrivate, FileModelPrivate> fileRepositoryPrivate)
+    public FilesGridViewModel(IRepository<FileModel, FileModel> fileRepository)
     {
         FileRepository = fileRepository;
-        FileRepositoryPrivate = fileRepositoryPrivate;
         ChangeStatus(FileAccessStatus);
     }
 
@@ -33,11 +31,11 @@ public class FilesGridViewModel : IFilesGridViewModel
         IEnumerable<FileModel> test = new List<FileModel>();
         if (newStatus == Filetype.Public)
         {
-            test = await FileRepository.GetAll();
+            test = await FileRepository.GetAll("public");
         }
         else
         {
-            test = await FileRepositoryPrivate.GetAll("tst"); //TODO Get Username
+            test = await FileRepository.GetAll("tst"); //TODO Get Username
         }
         
         foreach (var file in test)

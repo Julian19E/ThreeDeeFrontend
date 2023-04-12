@@ -10,7 +10,7 @@
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>
-        <PropertyColumn Property="x => x.SuccessPercentage" Title="@Localization.Components_GCodeTable_Success" Format="p2"/>
+        <PropertyColumn Property="x => Math.Round((double)x.SuccessfulPrints / (x.FailedPrints + x.SuccessfulPrints), 4)" Title="@Localization.Components_GCodeTable_Success" Format="p2"/>
         <PropertyColumn Property="x => x.FilamentLengthUsed" Title="@Localization.Components_GCodeTable_FilamentLengthUsed"/>
         <PropertyColumn Property="x => x.PrintingTimeMinutes" Title="@Localization.Components_GCodeTable_PrintingTime"/>
         <PropertyColumn Property="x => x.Author" Title="@Localization.Components_GCodeTable_Author"/>

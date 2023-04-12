@@ -12,7 +12,7 @@ public class FileModel : ResponseBase
     public string Author { get; set; } = "";
     public DateTime Created { get; set; }
     public long Size { get; set; }
-    public int Rating { get; set; } 
+    public float Rating { get; set; } 
     public List<int> GCodeIds { get; set; } = new();
     public Filetype Filetype { get; set; }
 }

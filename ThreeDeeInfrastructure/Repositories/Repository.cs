@@ -15,18 +15,18 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
     where TResponse : ResponseBase, new()
     where TRequest : class, new()
 {
-    protected readonly HttpClient HttpClient;
-    protected readonly JsonSerializerOptions Options;
-    protected readonly string Uri;
+    private readonly HttpClient _httpClient;
+    private readonly JsonSerializerOptions _options;
+    private readonly string _uri;
 
  
 
 
     public Repository(HttpClient httpClient, IEndpointService endpointService)
     {
-        HttpClient = httpClient;
-        Uri = endpointService.GetMappedUrl(typeof(TResponse));
-        Options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
+        _httpClient = httpClient;
+        _uri = endpointService.GetMappedUrl(typeof(TResponse));
+        _options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
     }
 
  
@@ -35,7 +35,7 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
     {
         try
         {
-            var response = await HttpClient.GetFromJsonAsync<List<TResponse>>($"{Uri}", Options);
+            var response = await _httpClient.GetFromJsonAsync<List<TResponse>>($"{_uri}", _options);
             return response ?? Enumerable.Empty<TResponse>().ToList();
         }
         catch (Exception e) when (e is HttpRequestException or JsonException)
@@ -49,7 +49,7 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
     {
         try
         {
-            var response = await HttpClient.GetFromJsonAsync<List<TResponse>>($"{Uri}/{id}", Options);
+            var response = await _httpClient.GetFromJsonAsync<List<TResponse>>($"{_uri}/{id}", _options);
             return response ?? Enumerable.Empty<TResponse>().ToList();
         }
         catch (Exception e) when (e is HttpRequestException or JsonException)
@@ -65,7 +65,7 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
     {
         try
         {
-            var response = await HttpClient.GetFromJsonAsync<TResponse>($"{Uri}/{id}", Options);
+            var response = await _httpClient.GetFromJsonAsync<TResponse>($"{_uri}/{id}", _options);
             return response ?? new TResponse();
         }
         catch (Exception e) when (e is HttpRequestException or JsonException)
@@ -85,7 +85,7 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
     {
         try
         {
-            var response = await HttpClient.PostAsJsonAsync(Uri, requestModel);
+            var response = await _httpClient.PostAsJsonAsync(_uri, requestModel);
             var responseString = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<TResponse>(responseString) ?? new TResponse();
         }
@@ -105,7 +105,7 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
     {
         try
         {
-            var response = await HttpClient.PutAsJsonAsync($"{Uri}/{id}", requestModel);
+            var response = await _httpClient.PutAsJsonAsync($"{_uri}/{id}", requestModel);
             var responseString = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<TResponse>(responseString) ?? new TResponse();
         }
@@ -125,7 +125,7 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
     {
         try
         {
-            var response = await HttpClient.DeleteAsync($"{Uri}/{id}");
+            var response = await _httpClient.DeleteAsync($"{_uri}/{id}");
             return response.IsSuccessStatusCode;
         }
         catch (HttpRequestException e)
@@ -133,14 +133,5 @@ public class Repository<TResponse, TRequest> : IRepository<TResponse, TRequest>
             Debug.WriteLine(e);
             return false;
         }
-    }
-
- 
-
-    protected string ExtractQuery(Dictionary<string, string>? queries)
-    {
-        if (queries == null || queries.Count == 0) return "";
-        var query = queries.Aggregate("?", (current, kv) => current + $"{kv.Key}={kv.Value}&");
-        return query.Remove(query.Length - 1);
     }
 }

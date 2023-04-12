@@ -6,7 +6,7 @@ namespace ThreeDeeInfrastructure.Services;
 public class EndpointService : IEndpointService
 {
     private const string FallbackUrl = "localhost/";
-    private readonly string _serviceUrl = "http://localhost:3005";
+    private readonly string _serviceUrl = "http://localhost:3005"; //TODO aus settings lesen
 /*
     public EndpointService(IConfigurationRoot configurationRoot)
     {
@@ -14,11 +14,10 @@ public class EndpointService : IEndpointService
             ? configurationRoot.GetSection("BackendServices")["Url"]
             : FallbackUrl) ?? FallbackUrl;
     }*/
-
+    
     public string GetMappedUrl(Type responseModel)
     {
         if (ReferenceEquals(responseModel, typeof(FileModel))) return _serviceUrl + ResourceUrls.ModelsPublic;
-        if (ReferenceEquals(responseModel, typeof(FileModelPrivate))) return _serviceUrl + ResourceUrls.ModelsPrivate;
         if (ReferenceEquals(responseModel, typeof(FileModelComplete))) return _serviceUrl + ResourceUrls.Model;
         if (ReferenceEquals(responseModel, typeof(GCodeSettingsModel))) return _serviceUrl + ResourceUrls.GCodeFilesInfo;
         return _serviceUrl;
