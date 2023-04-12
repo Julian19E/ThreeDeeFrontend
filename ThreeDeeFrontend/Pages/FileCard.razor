@@ -125,14 +125,11 @@
     </MudCard>
 </MudContainer>
 
-@if (files != null)
-{
-    <MudList>
-        @foreach (var file in files)
-        {
-            <MudListItem Icon="@Icons.Material.Filled.AttachFile">
-                @file.Name <code>@file.Size bytes</code>
-            </MudListItem>
-        }
-    </MudList>
-}
+<MudList>
+    @foreach (var file in _files)
+    {
+        <MudListItem Icon="@Icons.Material.Filled.AttachFile">
+            @file.Name <code>@file.Size bytes</code>
+        </MudListItem>
+    }
+</MudList>

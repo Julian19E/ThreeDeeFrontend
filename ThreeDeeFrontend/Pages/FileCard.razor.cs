@@ -43,12 +43,12 @@ public partial class FileCard
         await _modelRendererRef.ChangeColor(color.Value);
     }
     
-    IList<IBrowserFile> files = new List<IBrowserFile>();
+    IList<IBrowserFile> _files = new List<IBrowserFile>();
     private void UploadGCode(IReadOnlyList<IBrowserFile> files)
     {
         foreach (var file in files)
         {
-            this.files.Add(file);
+            _files.Add(file);
         }
         //TODO upload the files to the server
     }
