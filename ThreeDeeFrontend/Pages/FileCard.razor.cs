@@ -1,10 +1,12 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor.Utilities;
 using ThreeDeeApplication.Models;
 using ThreeDeeFrontend.Components;
 using ThreeDeeInfrastructure.Repositories;
+using ThreeDeeInfrastructure.ResponseModels;
 
 namespace ThreeDeeFrontend.Pages;
 
@@ -13,10 +15,9 @@ public partial class FileCard
     [Parameter]
     public int Id { get; set; }
     
-    [Inject] 
-    public IFileRepository FileRepository { get; set; }
+   [Inject] public IRepository<FileModelComplete, FileModelComplete> FileRepository { get; set; } = default!;
 
-    private FileModel _file;
+   private FileModel _file = new FileModel();
     private bool _avoidRendering;
     private bool _isColorPickerOpen;
     private bool _isInitDone;
@@ -25,9 +26,9 @@ public partial class FileCard
     private double _progress;
     private ModelRenderer _modelRendererRef;
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
-        _file = FileRepository.MockData[Id];
+        _file = await FileRepository.Get(Id);
     }
 
     private async Task ProgressHasChangedCallback(double progress)
@@ -40,5 +41,15 @@ public partial class FileCard
     {
         _color = color;
         await _modelRendererRef.ChangeColor(color.Value);
+    }
+    
+    IList<IBrowserFile> _files = new List<IBrowserFile>();
+    private void UploadGCode(IReadOnlyList<IBrowserFile> files)
+    {
+        foreach (var file in files)
+        {
+            _files.Add(file);
+        }
+        //TODO upload the files to the server
     }
 }
