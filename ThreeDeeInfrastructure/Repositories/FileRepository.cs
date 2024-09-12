@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ThreeDeeApplication.Enums;
 using ThreeDeeApplication.Models;
 
 namespace ThreeDeeInfrastructure.Repositories;
@@ -13,14 +14,14 @@ public class FileRepository : IFileRepository
     private readonly string _serviceUrl;
     public List<FileModel> MockData { get; } = new()
     {
-        new FileModel{Id = 0, Name = "Banshee", Author = "Nico"},
-        new FileModel{Id = 1, Name = "PrinterTest", Author = "Nico"},
-        new FileModel{Id = 2, Name = "Falcon", Author = "Gabriel" },
-        new FileModel{Id = 3, Name = "Lamp", Author = "Gabriel" },
-        new FileModel{Id = 4, Name = "Nut", Author = "Julian"},
-        new FileModel{Id = 5, Name = "GiftBoxOuter", Author = "Julian"},
-        new FileModel{Id = 6, Name = "Bolt", Author = "Hannes"},
-        new FileModel{Id = 7, Name = "GiftBoxInner", Author = "Hannes"}
+        new FileModel{Id = 0, Name = "Banshee", Author = "Nico", Filetype = Filetype.Public, Rating = 5},
+        new FileModel{Id = 1, Name = "PrinterTest", Author = "Nico", Filetype = Filetype.Public, Rating = 0},
+        new FileModel{Id = 2, Name = "Falcon", Author = "Gabriel", Filetype = Filetype.Public, Rating = 3},
+        new FileModel{Id = 3, Name = "Lamp", Author = "Gabriel", Filetype = Filetype.Public, Rating = 4},
+        new FileModel{Id = 4, Name = "Nut", Author = "Julian", Filetype = Filetype.Public, Rating = 2},
+        new FileModel{Id = 5, Name = "GiftBoxOuter", Author = "Julian", Filetype = Filetype.Private, Rating = 3},
+        new FileModel{Id = 6, Name = "Bolt", Author = "Hannes", Filetype = Filetype.Private, Rating = 1},
+        new FileModel{Id = 7, Name = "GiftBoxInner", Author = "Hannes", Filetype = Filetype.Private, Rating = 5}
     };
 
     public FileRepository(HttpClient httpClient, string serviceUrl)
